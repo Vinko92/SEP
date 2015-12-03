@@ -1,0 +1,27 @@
+.register-tab{
+float:left;
+margin-left:20px;
+margin-right:20px;
+border-bottom:2px solid #D8D8D8;
+color:#D8D8D8
+}
+
+.register-tab:hover{
+border-bottom:2px solid rgb(16, 162, 104);
+color:rgb(16, 162, 104);
+box-shadow:
+}
+
+.register-tab-text{
+margin-left:50px;
+margin-right:50px;
+
+}
+
+.register-tab-active{
+float:left;
+margin-left:20px;
+margin-right:20px;
+border-bottom:2px solid rgb(16, 162, 104);
+color:rgb(16, 162, 104);
+}
