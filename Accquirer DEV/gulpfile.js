@@ -42,20 +42,20 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('sass', function () {
-    gulp.src('assets/sass/**/*.scss')
+    gulp.src('content/sass/*.scss')
         .pipe(sass())
-        .pipe(gulp.dest('assets/css'));
+        .pipe(gulp.dest('content/css'));
 });
 
 gulp.task('minCss', ['sass'], function() {
-	gulp.src('assets/css/**/*.css')
+	gulp.src('content/css/*.css')
 		.pipe(concatCss("all.min.css"))
         .pipe(minifyCss())
         .pipe(gulp.dest('dist'));
 });
 
 gulp.task('sass:watch', function () {
-    gulp.watch(['assets/sass/**/*.scss', 'assets/css/**/*.css'], ['minCss']);
+    gulp.watch(['content/sass/*.scss', 'content/css/*.css'], ['minCss']);
 });
 
 gulp.task('lint', function() {
