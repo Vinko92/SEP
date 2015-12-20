@@ -2,18 +2,20 @@ package com.merchant.rest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+
 @Entity
 @Table(name = "CUSTOMER")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Customer {
 
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "name")
