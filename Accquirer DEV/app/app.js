@@ -2,6 +2,10 @@
 
 'use strict';
 
-var app = angular.module("acquirer.core", ['ngRoute','acquirer.customer']);
+var app = angular.module('merchant.core', ['ui.router','merchant.customer']);
 
+		app.run(function($rootScope) {
+			$rootScope.serverUrl =  'http://localhost:8080/MerchantApp/';
+
+		});
 })();

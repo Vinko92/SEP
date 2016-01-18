@@ -1,0 +1,108 @@
+$theme-color:rgb(16, 162, 104);
+$disabled-color:#D8D8D8;
+
+html,body{
+height:100%;
+}
+
+.register-tab{
+	float:left;
+	margin-left:20px;
+	margin-right:20px;
+	border-bottom:2px solid $disabled-color;
+	color:$disabled-color;
+
+	h4{
+		margin-left:50px;
+		margin-right:50px;
+		cursor: pointer;
+	}
+
+	a{
+		text-decoration:none;
+		color:$disabled-color;
+	}
+}
+
+.staff-item{
+	padding:5%;
+	height:400px;
+	overflow:hidden;
+}
+
+
+.register-tab-active{
+	float:left;
+	margin-left:20px;
+	margin-right:20px;
+	border-bottom: 2px solid $theme-color;
+	color:$theme-color;
+	
+	h4{
+		margin-left:50px;
+		margin-right:50px;
+	}
+	
+	a{
+		text-decoration:none;
+		color:$theme-color;
+		cursor: pointer;
+	}
+}
+
+.panel-insurance{
+	padding:0px;
+	margin-top:80px;
+	border: 1px solid rgb(16,162,104);
+	margin-bottom:80px;
+	&-heading {
+		background-color: rgb(16,162,104);
+		color:white;
+	}
+}
+
+.jumbotron-modification{
+	display:inline-block; 
+	background-color:white;
+}
+
+.img-max-width{
+	width:100%
+}
+
+.btn-acq{
+	background-color:$theme-color;
+	border:none;
+	color:white;
+	a{
+		text-decoration:none;
+		color:white;
+		cursor:pointer;
+		background-color:transparent;
+	}
+
+}
+
+.well-modification{
+	text-align:center;
+	border-radius:10px;
+}
+.register-nav{
+	list-style:none;
+	padding-left:10px;
+}
+.margin-tp{
+	margin-top:100px;
+}
+.margin-bot{
+	margin-bottom:80px;
+}
+
+.footer{
+width:100%;
+bottom:0;
+height:200px;
+background-color:#1a1a1a;
+padding-left:60px; 
+margin:0 auto;
+}

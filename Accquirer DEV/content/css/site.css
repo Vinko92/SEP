@@ -1,3 +1,6 @@
+html, body {
+  height: 100%; }
+
 .register-tab {
   float: left;
   margin-left: 20px;
@@ -11,6 +14,11 @@
   .register-tab a {
     text-decoration: none;
     color: #D8D8D8; }
+
+.staff-item {
+  padding: 5%;
+  height: 400px;
+  overflow: hidden; }
 
 .register-tab-active {
   float: left;
@@ -26,6 +34,15 @@
     color: #10a268;
     cursor: pointer; }
 
+.panel-insurance {
+  padding: 0px;
+  margin-top: 80px;
+  border: 1px solid #10a268;
+  margin-bottom: 80px; }
+  .panel-insurance-heading {
+    background-color: #10a268;
+    color: white; }
+
 .jumbotron-modification {
   display: inline-block;
   background-color: white; }
@@ -35,7 +52,8 @@
 
 .btn-acq {
   background-color: #10a268;
-  border: none; }
+  border: none;
+  color: white; }
   .btn-acq a {
     text-decoration: none;
     color: white;
@@ -55,3 +73,11 @@
 
 .margin-bot {
   margin-bottom: 80px; }
+
+.footer {
+  width: 100%;
+  bottom: 0;
+  height: 200px;
+  background-color: #1a1a1a;
+  padding-left: 60px;
+  margin: 0 auto; }
