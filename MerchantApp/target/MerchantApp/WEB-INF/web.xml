@@ -15,7 +15,16 @@
 
 	<!-- Processes application requests -->
 	<servlet>
-		<servlet-name>appServlet</servlet-name>
+		<servlet-name>customerServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>userServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -34,7 +43,11 @@
    </filter-mapping>
 		
 	<servlet-mapping>
-		<servlet-name>appServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<servlet-name>userServlet</servlet-name>
+		<url-pattern>/user/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>customerServlet</servlet-name>
+		<url-pattern>/customer/*</url-pattern>
 	</servlet-mapping>
 </web-app>
