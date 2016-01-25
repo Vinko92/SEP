@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
 	
-	angular.module('merchant.customer',['ngRoute']);
+	angular.module('merchant.customer',['ui.router']);
 
 })();

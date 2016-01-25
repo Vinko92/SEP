@@ -1,0 +1,17 @@
+<ul class="nav nav-sidebar nav-sidebar-padding sideBar">
+    <li ng-class="{activeItem:sbc.isActive('home')}">
+        <a ui-sref='main.home' tooltip-data="'Contains assignments'" cr-tooltip><span>Home</span></a>
+    </li>
+    <li ng-class="{activeItem:sbc.isActive('about')}">
+        <a ui-sref='main.about' tooltip-data="'Contains information about the application'" cr-tooltip><span>About</span></a>
+    </li>
+    <li ng-class="{activeItem:sbc.isActive('company')}">
+        <a ui-sref='main.companyList' tooltip-data="'Contains the company registry'" cr-tooltip><span>Companies</span></a>
+    </li>
+    <li ng-class="{activeItem:sbc.isActive('employee')}">
+        <a ui-sref='main.employeeList' tooltip-data="'Contains the employee registry'" cr-tooltip><span>Employees</span></a>
+    </li>
+    <li ng-class="{activeItem:sbc.isActive('place')}">
+        <a ui-sref='main.placeList' tooltip-data="'Contains the place registry'" cr-tooltip><span>Places</span></a>
+    </li>
+</ul>

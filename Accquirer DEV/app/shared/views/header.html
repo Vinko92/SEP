@@ -12,8 +12,9 @@
             </div>
             <div class="navbar-collapse collapse">
 			 <ul class="nav navbar-nav navbar-right pull-right" style="padding-top: 4px;">
-					<li><a ui-sref="main.home" href="#/login" style="color:white;"><strong>Login</strong></a></li>
-					<li><a href="#/register" style="color:white"><strong>Register</strong></a></li>
+					<li ng-show="!header.isLoggedIn()"><a  href="#/login" style="color:white;"><strong>Login</strong></a></li>
+					<li ng-show="!header.isLoggedIn()"><a href="#/register" style="color:white"><strong>Register</strong></a></li>
+					<li ng-show="header.isLoggedIn()"><a href="#/" style="color:white" ><strong>Log out</strong></a></li>
 			   </ul>
                 <ul class="nav navbar-nav navbar-right" style="padding-top: 4px;">
                     <li><a href="#/about" style="color:white"><strong>About</strong></a></li>

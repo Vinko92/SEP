@@ -4,8 +4,8 @@
 	angular.module('merchant.customer')
 			.controller('CustomerController',CustomerController);
 			
-	CustomerController.$inject = ['$location','$scope','customer.service'];
-	function CustomerController($location,$scope,service){
+	CustomerController.$inject = ['$location','$scope','customer.service','serverUrl'];
+	function CustomerController($location,$scope,service,serverUrl){
 		var self = this;
 		$scope.successMessages = [];
 		$scope.errorMessages = [];
@@ -27,7 +27,7 @@
 			  };
 		
 		self.register = function(){
-			service.insertCustomer($scope.serverUrl,customer).then(onSuccessfullRegistration,onErrorRegistration);
+			service.insertCustomer(serverUrl,customer).then(onSuccessfullRegistration,onErrorRegistration);
 		};
 			
 		var onSuccessfullRegistration = function(){
