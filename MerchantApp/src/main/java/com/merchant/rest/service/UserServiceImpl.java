@@ -51,14 +51,10 @@ public class UserServiceImpl implements UserService {
 		return this.userDAO.findUserById(id);
 	}
 
-//	@Override
-//	public User checkUserByUsername(String username) {
-//		return this.userDAO.checkUserByUsername(username);
-//	}
-//
-//	@Override
-//	public List<User> selectUser() {
-//		return this.userDAO.selectUser();
-//	}	
+	@Transactional
+	@Override
+	public User findUserByUsername(String username) {
+		return this.userDAO.findUserByUsername(username);
+	}
 	
 }

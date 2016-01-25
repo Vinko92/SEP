@@ -76,28 +76,18 @@ public class UserController {
 		return new ResponseEntity<User>(currentUser,HttpStatus.OK);
 	}
 	
-//	@RequestMapping(value = "/login",method = RequestMethod.POST)
-//	public ResponseEntity<Void> userLogin(@RequestBody User user, UriComponentsBuilder ucBuilder){
+	@RequestMapping(value = "/login",method = RequestMethod.POST)
+	public ResponseEntity<Void> userLogin(@RequestBody User user, UriComponentsBuilder ucBuilder){
 		
-//		User usr = userService.checkUserByUsername(user.getUsername());
-
-//		
-//		for(User u : userService.listUsers()){
-//			if(u.getUsername().equals(usr.getUsername())){
-//				return new ResponseEntity<Void>(HttpStatus.OK);
-//			}else{
-//				return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-//			}
-//		}
-//		return null;
-//	}
+		User usr = userService.findUserByUsername(user.getUsername());
 	
-//	@RequestMapping(value = "/list",method = RequestMethod.GET)
-//	public ResponseEntity<List<User>> list(){
-//		List<User> users = userService.selectUser();
-//		if(users.isEmpty()){
-//			return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
-//		}
-//		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
-//	}
+		if(usr != null){
+			for(User u : userService.listUsers()){
+				if(u.getUsername().equals(usr.getUsername())){
+					return new ResponseEntity<Void>(HttpStatus.OK);
+				}
+			}
+		}
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
 }

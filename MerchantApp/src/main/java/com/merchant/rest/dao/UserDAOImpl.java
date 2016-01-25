@@ -8,6 +8,8 @@ import java.util.List;
 
 
 
+
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -18,6 +20,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+
+
 
 
 
@@ -80,6 +84,21 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 //	@Override
+//	public User korisnik() {
+//		Session session = this.sessionFactory.getCurrentSession();
+//		User usr = (User) session.createQuery("from User where id = 2").uniqueResult();
+//		return usr;
+//	}
+
+	@Override
+	public User findUserByUsername(String username) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from User where username=:username").setString("username", username);
+		User u = (User) q.uniqueResult();
+		return u;
+	}
+
+//	@Override
 //	public User checkUserByUsername(String username) {
 //		Session session = this.sessionFactory.getCurrentSession();
 //		Query query = session.createSQLQuery("select * from User where id=2").addEntity(User.class);
@@ -87,16 +106,7 @@ public class UserDAOImpl implements UserDAO{
 //		User u = (User) query.uniqueResult();
 //		return u;
 //	}
-//
-//	@SuppressWarnings("unchecked")
-//	@Override
-//	public List<User> selectUser() {
-//		Session session = this.sessionFactory.getCurrentSession();
-//		List<User> users = (List<User>) session.createSQLQuery("select * from User").addEntity(User.class).list();
-////		query.setParameter("id", id);
-////		User u = (User) query.uniqueResult();
-//		return users;
-//	}
+
 	
 	
 	

@@ -10,6 +10,5 @@ public interface UserService {
 	public void updateUser(User u);
 	public List<User> listUsers();
 	public User findUserById(int id);
-//	public User checkUserByUsername(String username);
-//	public List<User> selectUser();
+	public User findUserByUsername(String username);
 }
