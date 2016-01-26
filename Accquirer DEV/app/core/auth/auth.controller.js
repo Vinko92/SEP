@@ -9,10 +9,6 @@
 	function authController($location,$scope,localStorageService,service,serverUrl){
 		var self = this;
 		
-		self.test = function(){
-			service.test();
-		};
-		
 		var authentication = {
 			isLoggedIn : false,
 			username : ""
@@ -20,33 +16,22 @@
 		
 		
 		self.register = function(){
-			service.register(registration)
-					.success(function(response){
-						console.log('Successfully registered');
-					})
-					.error(function(error){
-						console.log('error');
-					});
+			var response = service.register($scope.registerData);
+			response.then(function(){
+				console.log('Successfully registered');
+				$location.path('/');
+			},
+			function(){
+				console.log('Unable to register');
+			});
+			
 		};
 		
 		self.login = function(){
-			/*if(isValid(loginData)){
-				var deferred = $q.defer();
-				
-				$http.post(serverUrl +'/login', login)
-				     .success(function(response){
-						 authentication.isLoggedIn = true;
-						 authentication.username = login.username;
-						 deferred.resolve(response);
-					 })
-					 .error(function(error){
-						 deferred.reject(error);
-					 });
-					 return deferred.promise;
-			}*/
+			service.login($scope.loginData);
 					 
 		    authentication.isLoggedIn = true;
-		    authentication.username = loginData.username;
+		    authentication.username = $scope.loginData.username;
 		    $location.path('/');
 			
 			

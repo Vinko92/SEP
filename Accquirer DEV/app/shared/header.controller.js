@@ -10,8 +10,12 @@
 		var self = this;
 		
 		self.isLoggedIn = function(){
-			return service.isLoggedIn;
+			return service.isLoggedIn();
 		};
+		
+		self.logOut = function(){
+			service.logout();
+		}
 		
 	}
 	

@@ -35,7 +35,7 @@ public class UserController {
 		this.userService = us;
 	}
 	
-	@RequestMapping(value = "/user",method = RequestMethod.GET)
+	@RequestMapping(value = "/",method = RequestMethod.GET)
 	public ResponseEntity<List<User>> getAllUsers(){
 		List<User> users = userService.listUsers();
 		if(users.isEmpty()){

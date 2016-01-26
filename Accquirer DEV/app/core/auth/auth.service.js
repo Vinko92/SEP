@@ -15,46 +15,53 @@
 	};
 	
 	var register = function(registrationData){
-			return $http.post(serverUrl + '/register', registrationData).then(function(response){
+			return $http.post(serverUrl + 'user/registration', registrationData).then(function(response){
 				return response;
 			});
 		};
 		
-	var logIn = function(loginData){
-			if(isValid(loginData)){
+	var logIn = function(data){
 				var deferred = $q.defer();
-				
-				$http.post(serverUrl +'/login', loginData)
+				console.log(data);
+				$http.post(serverUrl +'user/login', data)
 				     .success(function(response){
-						 authentication.isLoggedIn = true;
-						 authentication.username = loginData.username;
-						 localStorageService.set('authorizationData',{username:loginData.username});
+						 _authentication.isLoggedIn = true;
+						 _authentication.username = data.username;
+						 localStorageService.set('username',data.username);
 						 deferred.resolve(response);
 					 })
 					 .error(function(error){
 						 deferred.reject(error);
 					 });
 				return deferred.promise;
-			}	
+				
 		};
 	
 	
 	var logOut = function(){
-		if(localStorageService.isSupported){
 			localStorageService.clearAll();
-			console.log('Good by' + _authentication.userName);
+			//TODO: pozovi logout sa servera da se unisti sesija
 			_authentication.userName = "";
 			_authentication.isLoggedIn = false;
 			$location.path('/');
-		}
+		
 	};
 
+	var isLoggedIn = function(){
+		var isLogged = localStorageService.get("username");
+		if(isLogged){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	
 	
 	return{
 		register: register,
 		login: logIn,
-		isLoggedIn: _authentication.isLoggedIn,
+		isLoggedIn: isLoggedIn,
 		logout:logOut,
 		test:test
 	};

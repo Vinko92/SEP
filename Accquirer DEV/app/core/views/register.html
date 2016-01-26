@@ -11,34 +11,34 @@
                     <div class="form-group">
 						<label class = "control-label col-md-3">First name:</label>
                         <div class="col-md-9">
-							<input type="text" class="form-control" ng-model="loginData.firstName"/>
+							<input type="text" class="form-control" ng-model="registerData.name"/>
                             <span id="username-validation"/ class="text-danger">                           
                         </div>
                     </div>
 					<div class="form-group">
 						<label class = "control-label col-md-3">Last name:</label>
                         <div class="col-md-9">
-							<input type="text" class="form-control" ng-model="loginData.lastName"/>
+							<input type="text" class="form-control" ng-model="registerData.surname"/>
                             <span id="username-validation"/ class="text-danger">                           
                         </div>
                     </div>
 					<div class="form-group">
 						<label class = "control-label col-md-3">Username</label>
                         <div class="col-md-9">
-							<input type="text" class="form-control" ng-model="loginData.username"/>
+							<input type="text" class="form-control" ng-model="registerData.username"/>
                             <span id="username-validation"/ class="text-danger">                           
                         </div>
                     </div>
 					<div class="form-group">
 						<label class = "control-label col-md-3">Password</label>
                         <div class="col-md-9">
-							<input type="password" class="form-control" ng-model="loginData.password"/>
+							<input type="password" class="form-control" ng-model="registerData.password"/>
                             <span id="password-validation"/ class="text-danger">                           
                         </div>
 					</div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <button class="btn btn-acq" ng-click="auth.login()">Register</button>
+                            <button class="btn btn-acq" ng-click="auth.register()">Register</button>
                         </div>
                     </div>
                 </div>
