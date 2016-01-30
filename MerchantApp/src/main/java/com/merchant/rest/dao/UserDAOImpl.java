@@ -10,6 +10,7 @@ import java.util.List;
 
 
 
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -20,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+
 
 
 
@@ -83,13 +85,6 @@ public class UserDAOImpl implements UserDAO{
 		return u;
 	}
 
-//	@Override
-//	public User korisnik() {
-//		Session session = this.sessionFactory.getCurrentSession();
-//		User usr = (User) session.createQuery("from User where id = 2").uniqueResult();
-//		return usr;
-//	}
-
 	@Override
 	public User findUserByUsername(String username) {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -98,18 +93,11 @@ public class UserDAOImpl implements UserDAO{
 		return u;
 	}
 
-//	@Override
-//	public User checkUserByUsername(String username) {
-//		Session session = this.sessionFactory.getCurrentSession();
-//		Query query = session.createSQLQuery("select * from User where id=2").addEntity(User.class);
-//		query.setParameter("username", username);
-//		User u = (User) query.uniqueResult();
-//		return u;
-//	}
-
-	
-	
-	
+	@Override
+	public User userLoginCheck(String username, String password) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from User where username=:username and password=:password").setString("username", username).setString("password", password);
+		User u = (User) q.uniqueResult();
+		return u;
+	}
 }
-
-

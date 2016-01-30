@@ -2,6 +2,8 @@ package com.merchant.rest.controller;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -25,7 +27,7 @@ import com.merchant.rest.service.UserService;
 @Controller
 @RequestMapping("/")
 public class UserController {
-
+	
 	@Autowired
 	private UserService userService;
 	
@@ -47,26 +49,30 @@ public class UserController {
 	@RequestMapping(value = "/registration",method = RequestMethod.POST)
 	public ResponseEntity<Void> userRegistration(@RequestBody User user, UriComponentsBuilder ucBuilder){
 		
-		for(User u : userService.listUsers()){
-			if(u.getId() == user.getId()){
-				return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+		User usr = userService.findUserByUsername(user.getUsername());
+		
+		if(usr != null){
+			for(User u : userService.listUsers()){
+				if(u.getUsername().equals(usr.getUsername())){
+					return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+				}
 			}
 		}
 		userService.userRegistration(user);
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
-		return new ResponseEntity<Void>(headers,HttpStatus.CREATED);
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value = "/update/{id}",method = RequestMethod.PUT)
-	public ResponseEntity<User> updateUser(@PathVariable("id") int id,@RequestBody User user){
-		User currentUser = userService.findUserById(id);
+	@RequestMapping(value = "/update/{username}",method = RequestMethod.PUT)
+	public ResponseEntity<User> updateUser(@PathVariable("username") String username,@RequestBody User user){
+		User currentUser = userService.findUserByUsername(username);
 		
 		if(currentUser == null){
 			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 		}
-		currentUser.setId(id);
+		
 		currentUser.setName(user.getName());
 		currentUser.setSurname(user.getSurname());
 		currentUser.setUsername(user.getUsername());
@@ -79,15 +85,17 @@ public class UserController {
 	@RequestMapping(value = "/login",method = RequestMethod.POST)
 	public ResponseEntity<Void> userLogin(@RequestBody User user, UriComponentsBuilder ucBuilder){
 		
-		User usr = userService.findUserByUsername(user.getUsername());
+		User usr = userService.userLoginCheck(user.getUsername(), user.getPassword());
 	
 		if(usr != null){
 			for(User u : userService.listUsers()){
-				if(u.getUsername().equals(usr.getUsername())){
+				if(u.getUsername().equals(usr.getUsername()) && u.getPassword().equals(usr.getPassword())){
 					return new ResponseEntity<Void>(HttpStatus.OK);
 				}
 			}
 		}
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
+	
+
 }

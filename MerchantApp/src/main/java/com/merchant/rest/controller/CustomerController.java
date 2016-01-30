@@ -24,8 +24,10 @@ import com.merchant.rest.service.CustomerService;
 @Controller
 @RequestMapping("/")
 public class CustomerController {
+	
 	@Autowired
 	private CustomerService customerService;
+	
 	@Autowired(required = true)
 	@Qualifier(value = "customerService")
 	public void setCustomerService(CustomerService cs){

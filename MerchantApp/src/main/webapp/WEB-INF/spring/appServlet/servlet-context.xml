@@ -45,7 +45,9 @@
 		<bean:property name="annotatedClasses">
 			<bean:list>
 				 	<bean:value>com.merchant.rest.model.Customer</bean:value>  
-					<bean:value>com.merchant.rest.model.User</bean:value>    
+					<bean:value>com.merchant.rest.model.User</bean:value>
+					<bean:value>com.merchant.rest.model.Home</bean:value>
+					<bean:value>com.merchant.rest.model.Risk</bean:value>             
 			</bean:list>
 		</bean:property>
 		<bean:property name="hibernateProperties">
@@ -69,6 +71,24 @@
 	<bean:bean id="userService" class="com.merchant.rest.service.UserServiceImpl">
 		<bean:property name="userDAO" ref="userDAO"></bean:property>
 	</bean:bean>    
+	<bean:bean id="homeDAO" class="com.merchant.rest.dao.HomeDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="homeService" class="com.merchant.rest.service.HomeServiceImpl">
+		<bean:property name="homeDAO" ref="homeDAO"></bean:property>
+	</bean:bean> 
+	<bean:bean id="insuranceDAO" class="com.merchant.rest.dao.InsuranceDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="insuranceService" class="com.merchant.rest.service.InsuranceServiceImpl">
+		<bean:property name="insuranceDAO" ref="insuranceDAO"></bean:property>
+	</bean:bean> 
+	<bean:bean id="riskDAO" class="com.merchant.rest.dao.RiskDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="riskService" class="com.merchant.rest.service.RiskServiceImpl">
+		<bean:property name="riskDAO" ref="riskDAO"></bean:property>
+	</bean:bean> 
 
 	
 	

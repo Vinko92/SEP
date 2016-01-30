@@ -2,6 +2,8 @@ package com.merchant.rest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,8 +15,9 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 public class User {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private Long id;
 	
 	@Column(name = "name")
 	private String name;
@@ -30,7 +33,7 @@ public class User {
 
 	public User(){}
 	
-	public User(int id, String name, String surname, String username,
+	public User(Long id, String name, String surname, String username,
 			String password) {
 		super();
 		this.id = id;
@@ -40,11 +43,11 @@ public class User {
 		this.password = password;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

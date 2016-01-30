@@ -56,5 +56,11 @@ public class UserServiceImpl implements UserService {
 	public User findUserByUsername(String username) {
 		return this.userDAO.findUserByUsername(username);
 	}
+
+	@Transactional
+	@Override
+	public User userLoginCheck(String username, String password) {
+		return this.userDAO.userLoginCheck(username, password);
+	}
 	
 }
