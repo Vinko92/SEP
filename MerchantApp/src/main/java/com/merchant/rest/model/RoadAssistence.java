@@ -25,11 +25,11 @@ public class RoadAssistence {
 	private String name;
 	
 	@Column(name = "priceOfRoadAssistence")
-	private BigDecimal priceOfRoadAssistence;
+	private double priceOfRoadAssistence;
 	
 	public RoadAssistence(){}
 
-	public RoadAssistence(int id, String name, BigDecimal priceOfRoadAssistence) {
+	public RoadAssistence(int id, String name, double priceOfRoadAssistence) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -52,11 +52,11 @@ public class RoadAssistence {
 		this.name = name;
 	}
 
-	public BigDecimal getPriceOfRoadAssistence() {
+	public double getPriceOfRoadAssistence() {
 		return priceOfRoadAssistence;
 	}
 
-	public void setPriceOfRoadAssistence(BigDecimal priceOfRoadAssistence) {
+	public void setPriceOfRoadAssistence(double priceOfRoadAssistence) {
 		this.priceOfRoadAssistence = priceOfRoadAssistence;
 	}
 
@@ -65,6 +65,6 @@ public class RoadAssistence {
 		return "RoadAssistence [id=" + id + ", name=" + name
 				+ ", priceOfRoadAssistence=" + priceOfRoadAssistence + "]";
 	}
-	
+
 	
 }

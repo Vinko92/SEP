@@ -2,6 +2,8 @@ package com.merchant.rest.controller;
 
 
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,10 +18,15 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.merchant.rest.model.Home;
 import com.merchant.rest.model.Risk;
+import com.merchant.rest.model.RoadAssistence;
 import com.merchant.rest.model.User;
+import com.merchant.rest.model.Vehicle;
+
 import com.merchant.rest.service.HomeService;
 import com.merchant.rest.service.InsuranceService;
 import com.merchant.rest.service.RiskService;
+import com.merchant.rest.service.RoadAssistenceService;
+import com.merchant.rest.service.VehicleService;
 import com.mysql.fabric.xmlrpc.base.Value;
 
 @Controller
@@ -33,6 +40,12 @@ public class InsuranceController {
 	public void setSessionFactory(SessionFactory sf){
 		this.sessionFactory = sf;
 	}
+	
+	@Autowired
+	private VehicleService vehicleService;
+	
+	@Autowired
+	private RoadAssistenceService roadAssistenceService;
 	
 	@Autowired
 	private InsuranceService insuranceService;
@@ -62,25 +75,64 @@ public class InsuranceController {
 	}
 	
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
-	public ResponseEntity<Double> homeInsrurancePrice(@RequestBody Home home,UriComponentsBuilder ucBuilder){
+	public ResponseEntity<Integer> homeInsrurancePrice(@RequestBody Home home,UriComponentsBuilder ucBuilder){
+		
 		String riskName = home.getTypeOfRisk();
 		Risk r = riskService.findRiskByName(riskName);
 		
 		if(r == null){
-			return new ResponseEntity<Double>(HttpStatus.CONFLICT);
+			return new ResponseEntity<Integer>(HttpStatus.CONFLICT);
 		}
 		
-		double price = home.getHomeInsurancePrice(home.getDurationOfInsurance(), home.getSurface(), home.getAge(),
+		double price = home.homeInsurancePrice(home.getDurationOfInsurance(), home.getSurface(), home.getAge(),
 				home.getEstimatedValue(),r.getPrice());
-		
-		
 		home.setPrice(price);
 		homeService.addHomeInsurance(home);
 		
-		
 		HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/home/{id}").buildAndExpand(home.getId()).toUri());
-        return new ResponseEntity<Double>(headers, HttpStatus.OK);
+        return new ResponseEntity<Integer>(headers, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/vehicle",method = RequestMethod.POST)
+	public ResponseEntity<Void> vehicleInsurancePrice(@RequestBody Vehicle vehicle,UriComponentsBuilder ucBuilder){
+
+		RoadAssistence ras = roadAssistenceService.getByName(vehicle.getPackages());
+
+		if(ras.getName().equals("Tow")){
+			double price = vehicle.getVehicleInsurancePriceTow(vehicle.getDurationOfInsurance(), ras.getPriceOfRoadAssistence());
+			vehicle.setPrice(price);
+			vehicleService.addVehicle(vehicle);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setLocation(ucBuilder.path("/vehicle/{id}").buildAndExpand(vehicle.getId()).toUri());
+			return new ResponseEntity<Void>(HttpStatus.CREATED);	
+		}else if(ras.getName().equals("Repair")){
+			double price = vehicle.getVehicleInsurancePriceRepair(vehicle.getDurationOfInsurance(), ras.getPriceOfRoadAssistence());
+			vehicle.setPrice(price);
+			vehicleService.addVehicle(vehicle);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setLocation(ucBuilder.path("/vehicle/{id}").buildAndExpand(vehicle.getId()).toUri());
+			return new ResponseEntity<Void>(HttpStatus.CREATED);	
+		}else if(ras.getName().equals("Hotel")){
+			double price = vehicle.getVehicleInsurancePriceHotel(vehicle.getDurationOfInsurance(), ras.getPriceOfRoadAssistence());
+			vehicle.setPrice(price);
+			vehicleService.addVehicle(vehicle);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setLocation(ucBuilder.path("/vehicle/{id}").buildAndExpand(vehicle.getId()).toUri());
+			return new ResponseEntity<Void>(HttpStatus.CREATED);	
+		}else if(ras.getName().equals("Alternative Transport")){
+			double price = vehicle.getVehicleInsurancePriceAlternativeTransport(vehicle.getDurationOfInsurance(), ras.getPriceOfRoadAssistence());
+			vehicle.setPrice(price);
+			vehicleService.addVehicle(vehicle);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setLocation(ucBuilder.path("/vehicle/{id}").buildAndExpand(vehicle.getId()).toUri());
+			return new ResponseEntity<Void>(HttpStatus.CREATED);	
+		}
+		
+		return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+
 	}
 	
 }
+
+

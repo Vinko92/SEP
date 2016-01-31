@@ -38,8 +38,6 @@ import com.merchant.rest.model.User;
 
 @Repository("userDAO")
 public class UserDAOImpl implements UserDAO{
-
-	private static final Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -53,7 +51,6 @@ public class UserDAOImpl implements UserDAO{
 	public void userRegistration(User u) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(u);
-		logger.info("User registrated successfully, Details="+u);
 	}
 
 
@@ -61,7 +58,6 @@ public class UserDAOImpl implements UserDAO{
 	public void updateUser(User u) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(u);
-		logger.info("User updated successfully,  Details="+u);
 	}
 
 
@@ -70,9 +66,6 @@ public class UserDAOImpl implements UserDAO{
 	public List<User> listUsers() {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<User> usersList = session.createQuery("from User").list();
-		for(User u : usersList){
-			logger.info("Users List::"+u);
-		}
 		return usersList;
 	}
 
@@ -81,7 +74,6 @@ public class UserDAOImpl implements UserDAO{
 	public User findUserById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();		
 		User u = (User) session.load(User.class, new Integer(id));
-		logger.info("User loaded successfully, details="+u);
 		return u;
 	}
 

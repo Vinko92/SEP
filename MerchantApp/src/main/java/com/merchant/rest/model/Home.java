@@ -1,6 +1,6 @@
 package com.merchant.rest.model;
 
-import java.math.BigDecimal;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -145,7 +145,7 @@ public class Home{
 		this.estimatedValue = estimatedValue;
 	}
 
-	public double getHomeInsurancePrice(int durationOfInsurance,double surface,double age,double estimetedValue,double riskPrice) {
-		return durationOfInsurance*(surface + age*1.5 + estimetedValue/2 + riskPrice);
+	public double homeInsurancePrice(int durationOfInsurance,double surface,double age,double estimetedValue,double riskPrice) {
+		return durationOfInsurance*(surface + age/2 + estimetedValue/4 + riskPrice);
 	}
 }
