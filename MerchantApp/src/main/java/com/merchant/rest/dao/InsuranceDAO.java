@@ -1,8 +1,10 @@
 package com.merchant.rest.dao;
 
-import java.math.BigDecimal;
+
+
+import com.merchant.rest.model.Insurance;
 
 public interface InsuranceDAO {
 
-	public BigDecimal getPrice(int id);
+	public void addInsurance(Insurance insurance);
 }

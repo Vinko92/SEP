@@ -1,8 +1,4 @@
 package com.merchant.rest.model;
-
-import java.math.BigDecimal;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,25 +21,31 @@ public class AdditionalInsurance {
 	@Column(name = "typeId")
 	private int typeId;
 	
-	@Column(name = "price")
-	private BigDecimal price;
+	@Column(name = "priceOfAdditionalInsurance")
+	private double priceOfAdditionalInsurance;
 	
-	@Column(name = "duration")
-	private int duration;
+	@Column(name = "durationOfAdditionalInsurance")
+	private int durationOfAdditionalInsurance;
 	
-	@Column(name = "typeName")
-	private List<String> typeName;
+	@Column(name = "nameOfAdditionalInsurance")
+	private String nameOfAdditionalInsurance;
+	
+	@Column(name = "ownerId")
+	private int owenerId;
 	
 	public AdditionalInsurance(){}
 
-	public AdditionalInsurance(int id, int typeId, BigDecimal price, int duration,
-			List<String> typeName) {
+	public AdditionalInsurance(int id, int typeId,
+			double priceOfAdditionalInsurance,
+			int durationOfAdditionalInsurance,
+			String nameOfAdditionalInsurance, int owenerId) {
 		super();
 		this.id = id;
 		this.typeId = typeId;
-		this.price = price;
-		this.duration = duration;
-		this.typeName = typeName;
+		this.priceOfAdditionalInsurance = priceOfAdditionalInsurance;
+		this.durationOfAdditionalInsurance = durationOfAdditionalInsurance;
+		this.nameOfAdditionalInsurance = nameOfAdditionalInsurance;
+		this.owenerId = owenerId;
 	}
 
 	public int getId() {
@@ -62,36 +64,50 @@ public class AdditionalInsurance {
 		this.typeId = typeId;
 	}
 
-	public BigDecimal getPrice() {
-		return price;
+	public double getPriceOfAdditionalInsurance() {
+		return priceOfAdditionalInsurance;
 	}
 
-	public void setPrice(BigDecimal price) {
-		this.price = price;
+	public void setPriceOfAdditionalInsurance(double priceOfAdditionalInsurance) {
+		this.priceOfAdditionalInsurance = priceOfAdditionalInsurance;
 	}
 
-	public int getDuration() {
-		return duration;
+	public int getDurationOfAdditionalInsurance() {
+		return durationOfAdditionalInsurance;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setDurationOfAdditionalInsurance(int durationOfAdditionalInsurance) {
+		this.durationOfAdditionalInsurance = durationOfAdditionalInsurance;
 	}
 
-	public List<String> getTypeName() {
-		return typeName;
+	public String getNameOfAdditionalInsurance() {
+		return nameOfAdditionalInsurance;
 	}
 
-	public void setTypeName(List<String> typeName) {
-		this.typeName = typeName;
+	public void setNameOfAdditionalInsurance(String nameOfAdditionalInsurance) {
+		this.nameOfAdditionalInsurance = nameOfAdditionalInsurance;
+	}
+
+	public int getOwenerId() {
+		return owenerId;
+	}
+
+	public void setOwenerId(int owenerId) {
+		this.owenerId = owenerId;
 	}
 
 	@Override
 	public String toString() {
 		return "AdditionalInsurance [id=" + id + ", typeId=" + typeId
-				+ ", price=" + price + ", duration=" + duration + ", typeName="
-				+ typeName + "]";
+				+ ", priceOfAdditionalInsurance=" + priceOfAdditionalInsurance
+				+ ", durationOfAdditionalInsurance="
+				+ durationOfAdditionalInsurance
+				+ ", nameOfAdditionalInsurance=" + nameOfAdditionalInsurance
+				+ ", owenerId=" + owenerId + "]";
 	}
+
+	
+	
 	
 	
 }

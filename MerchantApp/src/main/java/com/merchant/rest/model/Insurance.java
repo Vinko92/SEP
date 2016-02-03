@@ -1,11 +1,14 @@
 package com.merchant.rest.model;
-import java.math.BigDecimal;
+
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -20,54 +23,55 @@ public class Insurance {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "duration")
-	private int duration;
+	@Column(name = "durationOfInsurance")
+	private int durationOfInsurance;
 	
 	@Column(name = "numberOfPersons")
 	private int numberOfPersons;
 	
-	@Column(name = "price")
-	private BigDecimal price;
+//	@OneToMany(targetEntity=Insurance.class, mappedBy="ageOfPersons", fetch=FetchType.EAGER)
+//	private List<Integer> ageOfPersons;
 	
-	@Column(name = "additionalInsurance")
-	private String additionalInsurance;
-
+	@Column(name = "ageOfPersons")
+	private int ageOfPersons;
+	
+	@Column(name = "price")
+	private double price;
+	
 	@Column(name = "region")
 	private String region;
 	
 	@Column(name = "sport")
 	private String sport;
 	
-	public Insurance(){}
+	@Column(name = "amount")
+	private double amount;
 	
-	public Insurance(int id, int duration, int numberOfPersons, BigDecimal price,
-			String additionalInsurance,String region,String sport) {
+	@Column(name = "additionalInsuranceId")
+	private int additionalInsuranceId;
+	
+	public Insurance(){}
+
+	public Insurance(int id,int durationOfInsurance, int numberOfPersons, int ageOfPersons,
+			double price, String region, String sport, double amount,int additionalInsuranceId) {
 		super();
 		this.id = id;
-		this.duration = duration;
+		this.durationOfInsurance = durationOfInsurance;
 		this.numberOfPersons = numberOfPersons;
+		this.ageOfPersons = ageOfPersons;
 		this.price = price;
-		this.additionalInsurance = additionalInsurance;
 		this.region = region;
 		this.sport = sport;
+		this.amount = amount;
+		this.additionalInsuranceId = additionalInsuranceId;
 	}
 
-
-
-	public String getSport() {
-		return sport;
+	public int getAdditionalInsuranceId() {
+		return additionalInsuranceId;
 	}
 
-	public void setSport(String sport) {
-		this.sport = sport;
-	}
-
-	public String getRegion() {
-		return region;
-	}
-
-	public void setRegion(String region) {
-		this.region = region;
+	public void setAdditionalInsuranceId(int additionalInsuranceId) {
+		this.additionalInsuranceId = additionalInsuranceId;
 	}
 
 	public int getId() {
@@ -78,12 +82,12 @@ public class Insurance {
 		this.id = id;
 	}
 
-	public int getDuration() {
-		return duration;
+	public int getDurationOfInsurance() {
+		return durationOfInsurance;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setDurationOfInsurance(int durationOfInsurance) {
+		this.durationOfInsurance = durationOfInsurance;
 	}
 
 	public int getNumberOfPersons() {
@@ -94,30 +98,46 @@ public class Insurance {
 		this.numberOfPersons = numberOfPersons;
 	}
 
-	public BigDecimal getPrice() {
+	public int getAgeOfPersons() {
+		return ageOfPersons;
+	}
+
+	public void setAgeOfPersons(int ageOfPersons) {
+		this.ageOfPersons = ageOfPersons;
+	}
+
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
-	public String getAdditionalInsurance() {
-		return additionalInsurance;
+	public String getRegion() {
+		return region;
 	}
 
-	public void setAdditionalInsurance(String additionalInsurance) {
-		this.additionalInsurance = additionalInsurance;
+	public void setRegion(String region) {
+		this.region = region;
 	}
 
-	@Override
-	public String toString() {
-		return "Insurance [id=" + id + ", duration=" + duration
-				+ ", numberOfPersons=" + numberOfPersons + ", price=" + price
-				+ ", additionalInsurance=" + additionalInsurance + "]";
+	public String getSport() {
+		return sport;
 	}
 
-	public double price(int duration,double regionPrice,double sportPrice,int numberOfPersons){
-		return duration*(regionPrice + sportPrice + numberOfPersons);
+	public void setSport(String sport) {
+		this.sport = sport;
 	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	
+	
 }

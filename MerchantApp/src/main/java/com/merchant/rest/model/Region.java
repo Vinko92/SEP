@@ -24,16 +24,12 @@ public class Region {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "price")
-	private BigDecimal price;
-	
 	public Region(){}
 
-	public Region(int id, String name, BigDecimal price) {
+	public Region(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.price = price;
 	}
 
 	public int getId() {
@@ -50,20 +46,5 @@ public class Region {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public BigDecimal getPrice() {
-		return price;
-	}
-
-	public void setPrice(BigDecimal price) {
-		this.price = price;
-	}
-
-	@Override
-	public String toString() {
-		return "Region [id=" + id + ", name=" + name + ", price=" + price + "]";
-	}
-	
-	
+	}	
 }

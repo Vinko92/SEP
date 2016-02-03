@@ -2,6 +2,8 @@ package com.merchant.rest.dao;
 
 import java.math.BigDecimal;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,14 +22,13 @@ public class InsuranceDAOImpl implements InsuranceDAO{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@Override
-	public BigDecimal getPrice(int id) {
+	public void addInsurance(Insurance insurance) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Query q = session.createQuery("from Insurance where id=:id").setInteger("id", id);
-		Insurance i = (Insurance) q.uniqueResult();
-		return i.getPrice();
+		session.persist(insurance);
 	}
+	
 
 	
 }

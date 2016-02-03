@@ -44,12 +44,16 @@
 		<bean:property name="dataSource" ref="dataSource" />
 		<bean:property name="annotatedClasses">
 			<bean:list>
+					<bean:value>com.merchant.rest.model.AdditionalInsurance</bean:value>
 				 	<bean:value>com.merchant.rest.model.Customer</bean:value>  
 					<bean:value>com.merchant.rest.model.User</bean:value>
 					<bean:value>com.merchant.rest.model.Home</bean:value>
 					<bean:value>com.merchant.rest.model.Risk</bean:value>
+					<bean:value>com.merchant.rest.model.Insurance</bean:value>  
 					<bean:value>com.merchant.rest.model.RoadAssistence</bean:value>
-					<bean:value>com.merchant.rest.model.Vehicle</bean:value>                       
+					<bean:value>com.merchant.rest.model.Vehicle</bean:value>
+					<bean:value>com.merchant.rest.model.Region</bean:value>
+					<bean:value>com.merchant.rest.model.Sport</bean:value>
 			</bean:list>
 		</bean:property>
 		<bean:property name="hibernateProperties">
@@ -110,7 +114,26 @@
 		<bean:property name="vehicleDAO" ref="vehicleDAO"></bean:property>
 	</bean:bean> 
 
+	<bean:bean id="regionDAO" class="com.merchant.rest.dao.RegionDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="regionService" class="com.merchant.rest.service.RegionServiceImpl">
+		<bean:property name="regionDAO" ref="regionDAO"></bean:property>
+	</bean:bean>
 	
+	<bean:bean id="sportDAO" class="com.merchant.rest.dao.SportDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="sportService" class="com.merchant.rest.service.SportServiceImpl">
+		<bean:property name="sportDAO" ref="sportDAO"></bean:property>
+	</bean:bean>
+
+	<bean:bean id="additionalInsuranceDAO" class="com.merchant.rest.dao.AdditionalInsuranceDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="additionalInsuranceService" class="com.merchant.rest.service.AdditionalInsuranceServiceImpl">
+		<bean:property name="additionalInsuranceDAO" ref="additionalInsuranceDAO"></bean:property>
+	</bean:bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	

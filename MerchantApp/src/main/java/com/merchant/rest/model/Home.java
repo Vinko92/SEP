@@ -24,8 +24,8 @@ public class Home{
 	@Column(name = "address")
 	private String address;
 	
-	@Column(name = "owner")
-	private String owner;
+	@Column(name = "ownerName")
+	private String ownerName;
 	
 	@Column(name = "ownerJmbg")
 	private String ownerJmbg;
@@ -50,12 +50,12 @@ public class Home{
 	
 	public Home(){}
 	
-	public Home(int id, String address, String owner, String ownerJmbg,
+	public Home(int id, String address, String ownerName, String ownerJmbg,
 			double surface, double age, double estimatedValue,int durationOfInsurance,String typeOfRisk,double price) {
 		super();
 		this.id = id;
 		this.address = address;
-		this.owner = owner;
+		this.ownerName = ownerName;
 		this.ownerJmbg = ownerJmbg;
 		this.surface = surface;
 		this.age = age;
@@ -105,12 +105,12 @@ public class Home{
 		this.address = address;
 	}
 
-	public String getOwner() {
-		return owner;
+	public String getOwnerName() {
+		return ownerName;
 	}
 
-	public void setOwner(String owner) {
-		this.owner = owner;
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
 	}
 
 	public String getOwnerJmbg() {
