@@ -1,0 +1,103 @@
+<div>
+	<h2>Assignment</h2>
+	<p>
+		Make sure you read the <a href="#/about">About</a> page before starting your assignment.<br/>
+		Your assignment will be to take what we've learned today and apply it to your project.<br/>
+		<b>Important:</b> if you have completed all the non-bonus excercises from the last class then it is highly recommended that you take your project and work with it instead of this one. For your convenience copy the assignment from below into your home.html file. If you haven't finished all of the non-bonus excercises use this project instead.<br/>
+		<em>Note:</em> use bower to install all the needed libraries.
+	</p>
+	<div class="assignment">
+		Complete the following exercises:
+		<ol>
+			<li>
+				Using the ngMessages module as well as the inbuilt support for form validation, extend your application in the following way:
+				<ol>
+					<li>
+						In the employee add/edit form, have the jmbg, name and surname be required. The jmbg also needs to be exactly 13 characters long. Display an appropriate error message using the ngMessages directive;
+						<div class="solution"><em>Code:</em> app/components/employee/employee.html - line 8-13, 19-22, 28-31;</div>
+					</li>
+					<li>
+						Modify the company add/edit form so that the name and pib are required fields. With the headquarters field, modify the combobox so that it doesn't contain the null option. Make sure to create appropriate error messages;
+						<div class="solution"><em>Code:</em> app/components/company/company.html - line 8-13, 19-22, 43-45; app/components/company/company.controller.js - line 14-16;</div>
+					</li>
+					<li>
+						<b>Bonus:</b> read about regular expressions and make the input fields for jmbg and pib accept only numbers and the email field accept valid emails, <i>i.e.</i> example@yahoo.com (<em>Note:</em> use the ng-pattern directive and not simply the type="number/email" statement)
+						<div class="solution"><em>Code:</em> app/components/company/company.html - line 34-37; app/components/employee/employee.html - line 8, 37-40;</div>
+					</li>
+					<li>
+						Use the input element state and css classes to inform the user that a field contains invalid data by, for example, making the input element red;
+						<div class="solution"><em>Code:</em> app/components/employee/employee.html - line 5;</div>
+					</li>
+					<li>
+						In the add/edit forms disable the "Save" button if the form is invalid;
+						<div class="solution"><em>Code:</em> app/components/employee/employee.html - line 50;</div>
+					</li>
+					<li>
+						<b>Bonus:</b> in the add/edit from of the place entity disable the "Delete" button if the place is being referenced somewhere;
+						<div class="solution"><em>Code:</em> app/components/place/place.controller.js - line 16-32; app/components/place/place.html - line 20;</div>
+					</li>
+				</ol>
+			</li>
+			<li>
+				Using ng-model-options modify all non-combobox search fields so that they update their model after half a second or instantly on blur;
+				<div class="solution"><em>Code:</em> app/components/employee/employee-list.controller.js - line 6-9;</div>
+			</li>
+			<li>
+				Using $scope.$watch and angular.equals enable the "Revert" button in the edit forms only if the user has modified the given data (<em>Note:</em> find out how best to incorporate $scope.$watch with the controllerAs syntax online);
+				<div class="solution"><em>Code:</em> app/components/employee/employee.controller.js - line 28-37;</div>
+			</li>
+			<li>
+				Using $scope.$watch recreate the pagination keys when the search parameters change (<em>Note:</em> google 'how to display length of filtered ng-repeat');
+				<div class="solution"><em>Code:</em> app/components/employee/employee-list.controller.js - line 26-32; app/components/employee/employee-list.html 61</div>
+			</li>
+			<li>
+				Focusing on creating custom directives, create directives that offer the following functionality:
+				<ol>
+					<li>
+						Create a simple "employee" directive which replaces the content of the row in the employee list table, so that the following code:
+						<pre><code ng-non-bindable>&lt;tr ...>
+  &lt;td>{{employee.jmbg}}&lt;/td>
+  &lt;td>{{employee.name}}&lt;/td>
+  &lt;td>{{employee.surname}}&lt;/td>
+  &lt;td>{{employee.email}}&lt;/td>
+  &lt;td>{{employee.placeOfBirth}}&lt;/td>
+&lt;/tr></code></pre>
+						is replaced with the following code, while giving the same result:
+						<pre><code ng-non-bindable>&lt;tr ... cr-employee>
+&lt;/tr></code></pre>
+						<div class="solution"><em>Code:</em> app/components/employee/employee-row.directive.js; app/components/employee/employee-row.html; app/components/employee/employee-list.html - line 61</div>
+					</li>
+					<li>
+						Use the uniqueJmbg directive from the last example to create three directives, one for your employee jmbg, the company pib and the place postal code (<em>Note:</em> use the ng-model-options directive to avoid sending needless requests);
+					</li>
+					<li>
+						<b>Bonus:</b> avoid code duplication by creating a generic "unique-field" attribute directive where the function that needs to be called to check weather the field is unique should be passed as the value of the attribute, <i>i.e.</i> <code ng-non-bindable>&lt;input ... unique-field="checkUniqueness(value)"></code>;
+						<div class="solution"><em>Code:</em> app/shared/directives/unique-field.directive.js; app/components/employee/employee.html - line 8; app/components/employee/employee-list.html - line 24</div>
+					</li>
+					<li>
+						Create a "tooltip" attribute directive which displays a message being passed to the directive when a user hovers over an element with this attribute. Apply this directive to each menu item in the side bar to so that when a user hovers over the menu item a short sentence will be displayed which describes what contet will be displayed if the user clicks on the item;
+						<div class="solution"><em>Code:</em> app/shared/directives/tooltip.directive.js; app/components/core/side-bar.html;</div>
+					</li>
+				</ol>
+			</li>
+			<li>
+				<span class="solution"><b><em>Warning:</em></b></span> the following assignment can break your code beyond repair. It is recommended that you create a new branch (call it "refractor") and play with your project on that branch.<br/>
+				<b>Bonus:</b> refactoring your code to reduce code duplication and improve your coding style (<em>Note:</em> the achieve optimal code we need to write clean code as well as adopt conventions, which include general best practices and conventions specific to our project):
+				<ol>
+					<li>
+						<b>Bonus:</b> read about angular.extend and extend your entity services with the $saveOrUpdate method which will contain code used in your controller's save function. The controller's save function will now only call this method, <i>i.e.</i> <code>function save() { ec.employee.$saveOrUpdate(); }</code>
+						<div class="solution"><em>Code:</em> app/components/employee/employee.service.js - line 17-26; app/components/employee/employee.controller.js - line 51;</div>
+					</li>
+					<li><b>Bonus:</b> create a service which will return an object that contains the save, delete, revert and success functions and entityCopy object. The service should be passed the name of the entity and the entity object during constructions. Once you create a service, inject it into your controller and extend the this variable of the controller with the given functions and object (<em>Note:</em> think about why we need to pass these two values. When extracting common code, we need to be aware which parts are different between instances. If you look at the mentioned code, most of the actual text is the same, where the only difference is in the entity name (used in the success function) and the entity object itself, used in the other functions);
+					<div class="solution"><em>Code:</em> this and the following assignment will be left without a solution as there is no one right answer. For the next session we will use code built up to now, but it is recommended that you try to remove as much code duplication as you can, while still keeping things clean. This is a skill that takes a lot of time to develope so don't expect to do everything right on your first go;</div></li>
+					<li><b>Bonus:</b> group the HTML for the save, delete, revert and back buttons into a custom directive and modify the HTML template using the compile function by passing it the name of the controller and the name of the entity (<em>Note:</em> as above, think about why we need to pass these two values. If you look at the HTML for these buttons in the employee/company/place add/edit form we can see that, indeed, only the name of the controller and entity (in the ng-show of Delete and the Back anchor tag) is different);</li>
+				</ol>
+			</li>
+		</ol>
+		<ul>
+			<li>Focus on doing non-bonus excercises during class;</b>
+			<li>What you don't complete during the class remains as a homework assignment;</li>
+			<li>It is highly recommended that you complete each of the listed excercises, including bonus excercises;</li>
+		</ul>
+	</div>
+</div>

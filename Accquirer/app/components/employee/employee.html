@@ -1,0 +1,67 @@
+<div>
+	<h3>{{ec.title}}</h3>
+    <hr>
+    <form class="form-horizontal" novalidate name="ec.employeeForm">
+        <div class="form-group" ng-class="{ 'has-error': ec.employeeForm.jmbg.$touched && ec.employeeForm.jmbg.$invalid }">
+            <label class="control-label col-sm-2" for="jmbg" translate>{{"EMPLOYEE.JMBG"}}</label>
+            <div class="col-sm-6 col-md-4" busy-indicator>
+            	<input type="text" ng-model="ec.employee.jmbg" id="jmbg" name="jmbg" class="form-control" required ng-pattern="/^[0-9]{13}$/" ng-model-options="{ updateOn: 'default blur', debounce: {'default':500, 'blur':0 } }" unique-field="ec.uniqueField(value)">
+                <!-- U redu 8 se nalazi rešenje nekoliko zadataka; Putem ng-pattern označavamo šablon kome mora da odgovara unos (13 karaktera "{13}", koji moraju biti cifra "[0-9]"; Neophodno je staviti ^ na početak i $ na kraj); Za ng-model-options pogledati slajdove; unique-value je custom direktiva kojoj prosleđujemo ec.uniqueField(value) funkciju-->
+                <div ng-messages="ec.employeeForm.jmbg.$error" ng-show="ec.employeeForm.jmbg.$touched">
+                    <p ng-message="required"><span translate>{{"EMPLOYEE.ERROR.REQUIRED"}}</span></p>
+                    <p ng-message="pattern"><span translate>{{"EMPLOYEE.ERROR.NUM"}}</span></p>
+                    <p ng-message="uniqueField"><span translate>{{"EMPLOYEE.ERROR.UNIQUE"}}</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': ec.employeeForm.name.$touched && ec.employeeForm.name.$invalid }">
+            <label class="control-label col-sm-2" for="name" translate>{{"EMPLOYEE.NAME"}}</label>
+            <div class="col-sm-6 col-md-4">
+            	<input type="text" ng-model="ec.employee.name" id="name" name="name" class="form-control" required>
+                <div ng-messages="ec.employeeForm.name.$error" ng-show="ec.employeeForm.name.$touched">
+                    <p ng-message="required"><span translate>{{"EMPLOYEE.ERROR.REQUIRED"}}</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': ec.employeeForm.surname.$touched && ec.employeeForm.surname.$invalid }">
+            <label class="control-label col-sm-2" for="surname" translate>{{"EMPLOYEE.SURNAME"}}</label>
+            <div class="col-sm-6 col-md-4">
+            	<input type="text" ng-model="ec.employee.surname" id="surname" name="surname" class="form-control" required>
+                <div ng-messages="ec.employeeForm.surname.$error" ng-show="ec.employeeForm.surname.$touched">
+                    <p ng-message="required"><span translate>{{"EMPLOYEE.ERROR.REQUIRED"}}</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': ec.employeeForm.email.$touched && ec.employeeForm.email.$invalid }">
+            <label class="control-label col-sm-2" for="email" translate>{{"EMPLOYEE.EMAIL"}}</label>
+            <div class="col-sm-6 col-md-4">
+            	<input type="text" ng-model="ec.employee.email" id="email" name="email" class="form-control" ng-pattern="/^[0-9a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+$/">
+                <div ng-messages="ec.employeeForm.email.$error" ng-show="ec.employeeForm.email.$touched">
+                    <p ng-message="pattern"><span translate>{{"EMPLOYEE.ERROR.EMAIL"}}</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="dateOfBirth" translate>{{"EMPLOYEE.DATEOFBIRTH"}}</label>
+            <div class="col-sm-6 col-md-4">
+                <input id="dateOfBirth" type="text" class="form-control" ng-model="ec.employee.dateOfBirth" is-open="ec.datepicker.opened" min-date="ec.datepicker.minDate" max-date="ec.datepicker.maxDate" ng-click="ec.datepicker.opened = true" datepicker-popup="{{ec.datepicker.format}}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="placeOfBirth" translate>{{"EMPLOYEE.PLACEOFBIRTH"}}</label>
+            <div class="col-sm-4 col-md-3">
+                <select class="form-control" id="placeOfBirth" name="placeOfBirth" ng-model="ec.employee.placeOfBirth"
+                    ng-options="place.name as place.name for place in ec.places">
+                    <option value="">---</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary col-sm-1" ng-click="ec.newPlace()">+</button>
+        </div>
+        <div class="col-sm-offset-2">
+        	<button type="button" class="btn btn-primary" ng-click="ec.save()" translate ng-disabled="ec.employeeForm.$invalid">{{"COMMON.SAVE"}}</button>
+        	<button type="button" class="btn btn-warning" ng-click="ec.revertChanges()" ng-disabled="ec.disableRevert" translate>{{"COMMON.REVERT"}}</button>
+        	<button type="button" class="btn btn-danger" ng-show="ec.employee._id" ng-click="ec.remove()" translate>{{"COMMON.DELETE"}}</button>
+        	<a class="btn btn-default" href="#/employee"><i class="fa fa-chevron-left"></i> {{"COMMON.BACK" | translate}}</a>
+        </div>
+    </form>
+</div>
