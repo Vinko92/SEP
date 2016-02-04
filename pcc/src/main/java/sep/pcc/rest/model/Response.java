@@ -1,25 +1,37 @@
 package sep.pcc.rest.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Response {
 
-	private List<String> messages;
+	private List<String> message;
 	
 	private boolean success;
 	
+	private long acquirerOrderId;
+	
+	private Date acquirerTimestamp;
+	
+	private long issuerOrderId;
+	
+	private Date issuerTimestamp;
+	
 	public Response(){
-		messages = new ArrayList<String>();
+		message = new ArrayList<String>();
 	}
 
 	public List<String> getMessage() {
-		return messages;
+		return message;
 	}
 
 	public void setMessage(List<String> messages) {
-		this.messages = messages;
+		this.message = messages;
 	}
 
 	public boolean isSuccess() {
@@ -32,7 +44,42 @@ public class Response {
 	
 	public void addMessage(String message)
 	{
-		messages.add(message);
+		this.message.add(message);
 	}
+
+
+	public long getAcquirerOrderId() {
+		return acquirerOrderId;
+	}
+
+	public void setAcquirerOrderId(long acquirerOrderId) {
+		this.acquirerOrderId = acquirerOrderId;
+	}
+
+	public Date getAcquirerTimestamp() {
+		return acquirerTimestamp;
+	}
+
+	public void setAcquirerTimestamp(Date acquirerTimestamp) {
+		this.acquirerTimestamp = acquirerTimestamp;
+	}
+
+	public long getIssuerOrderId() {
+		return issuerOrderId;
+	}
+
+	public void setIssuerOrderId(long issuerOrderId) {
+		this.issuerOrderId = issuerOrderId;
+	}
+
+	public Date getIssuerTimestamp() {
+		return issuerTimestamp;
+	}
+
+	public void setIssuerTimestamp(Date issuerTimestamp) {
+		this.issuerTimestamp = issuerTimestamp;
+	}
+	
+	
 	
 }

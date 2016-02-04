@@ -4,19 +4,26 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "payment")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Payment {
 
+	@Id
+	@GeneratedValue
+	private long id;
+	
 	@Column(name ="amount")
 	private float amount;
 	
-	@Column(name ="pan", unique = true)
+	@Column(name ="pan")
 	private String PAN;
 	
 	@Column(name ="cardHolder")
@@ -28,8 +35,20 @@ public class Payment {
 	@Column(name ="securityCode")
 	private String securityCode;
 	
-	@Column(name = "timestamp")
+	@Column(name = "timestamp", unique = true)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date timestamp;
+	
+	@Column(name = "orderId", unique = true)
+	private long orderId;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public float getAmount() {
 		return amount;
@@ -78,6 +97,15 @@ public class Payment {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
+
+	public long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(long orderId) {
+		this.orderId = orderId;
+	}
+	
 	
 	
 }

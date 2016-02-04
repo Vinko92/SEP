@@ -12,7 +12,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "payment")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Payment {
 	
 	@Id
@@ -22,7 +22,7 @@ public class Payment {
 	@Column(name ="amount")
 	private double amount;
 	
-	@Column(name ="pan", unique = true)
+	@Column(name ="pan")
 	private String PAN;
 	
 	@Column(name ="cardHolder")
@@ -34,8 +34,11 @@ public class Payment {
 	@Column(name ="securityCode")
 	private String securityCode;
 	
-	@Column(name = "timestamp")
+	@Column(name = "timestamp", unique = true)
 	private Date timestamp;
+	
+	@Column(name = "orderId", unique = true)
+	private long orderId;
 
 	public int getId() {
 		return id;
@@ -91,6 +94,14 @@ public class Payment {
 
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
+	}
+
+	public long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(long orderId) {
+		this.orderId = orderId;
 	}
 	
 	

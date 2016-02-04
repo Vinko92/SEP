@@ -45,6 +45,7 @@
 			<bean:list>
 					<bean:value>com.bank.rest.model.User</bean:value>    
 					<bean:value>com.bank.rest.model.Card</bean:value> 
+					<bean:value>com.bank.rest.model.Payment</bean:value> 
 			</bean:list>
 		</bean:property>
 		<bean:property name="hibernateProperties">
@@ -65,7 +66,9 @@
 	<bean:bean id="cardService" class="com.bank.rest.service.CardService">
 		<bean:property name="dao" ref="dao"></bean:property>
 	</bean:bean>   
-
+	<bean:bean id="paymentService" class="com.bank.rest.service.PaymentService">
+		<bean:property name="dao" ref="dao"></bean:property>
+	</bean:bean>
 	
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>

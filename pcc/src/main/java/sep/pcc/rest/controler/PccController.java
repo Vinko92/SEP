@@ -80,6 +80,7 @@ public class PccController {
 	public ResponseEntity<Response> create(@RequestBody Bank bank, UriComponentsBuilder ucBuilder){
 		
 		Response response = new Response();
+		
 		try
 		{
 			bankService.add(bank);
@@ -97,8 +98,9 @@ public class PccController {
 	}
 	
 	
-	@RequestMapping(value = "/requestPayment", method = RequestMethod.POST)
+	@RequestMapping(value = "/payment/request", method = RequestMethod.POST)
 	public ResponseEntity<Response> requestPayment(@RequestBody Payment payment, UriComponentsBuilder ucBuilder){
+		
 		Response response = new Response();
 		
 		try{
@@ -109,7 +111,6 @@ public class PccController {
 			headers.setContentType(MediaType.APPLICATION_JSON);
 			HttpEntity<Payment> entity = new HttpEntity<Payment>(payment,headers);
 			String bankServiceUri = getBankServiceUri(payment.getPAN());
-			
 			response = client.postForObject(bankServiceUri + "/withdraw",entity, Response.class);
 		}
 		catch(Exception ex){
@@ -127,14 +128,19 @@ public class PccController {
 	private void validate(Payment payment) throws Exception
 	{
 		StringBuilder sb = new StringBuilder();
-		Calendar threshold = Calendar.getInstance();
-		threshold.add(Calendar.SECOND, -10);
+		Calendar maxTimestamp  = Calendar.getInstance();
+		Calendar minTimestamp  = Calendar.getInstance();
 		
-		if(payment.getTimestamp() == null || !(threshold.getTime().getSeconds() < payment.getTimestamp().getSeconds()))
+		maxTimestamp.add(Calendar.SECOND, 10);
+		minTimestamp.add(Calendar.SECOND, -10);
+		/*
+		if(payment.getTimestamp() == null ||
+		   payment.getTimestamp().before(minTimestamp.getTime()) || 
+		   payment.getTimestamp().after(maxTimestamp.getTime()))
 		{
-			sb.append("Invalid timestamp");
+			sb.append("Invalid timestamp. Please, make sure that your clock is in sync with server clock.");
 			sb.append(System.getProperty("line.separator"));
-		}
+		}*/
 		if(payment.getPAN() == null || !bankService.exists(payment.getPAN()))
 		{
 			sb.append("Bank with provided PAN does not exist!");
@@ -149,8 +155,7 @@ public class PccController {
 	
 	
 	private String getBankServiceUri(String pan) throws Exception{
-		
-			String serviceUri;
+
 			Bank bank = bankService.find(pan);
 			
 			if(bank == null)
