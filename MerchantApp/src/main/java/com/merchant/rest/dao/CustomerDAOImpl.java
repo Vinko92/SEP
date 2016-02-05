@@ -80,5 +80,15 @@ public class CustomerDAOImpl implements CustomerDAO{
 		return c.getId();
 	}
 
+
+	@Override
+	public void setCustomerOwnerByJmbg(String jmbg) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from Customer where jmbg=:jmbg").setString("jmbg", jmbg);
+		Customer c = (Customer) q.uniqueResult();
+		c.setOwner(true);
+		session.persist(c);
+	}
+
 	
 }

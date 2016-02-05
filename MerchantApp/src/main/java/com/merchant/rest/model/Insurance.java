@@ -4,11 +4,9 @@ package com.merchant.rest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -50,10 +48,13 @@ public class Insurance {
 	@Column(name = "additionalInsuranceId")
 	private int additionalInsuranceId;
 	
+	@Column(name = "ownerName")
+	private String ownerName;
+	
 	public Insurance(){}
 
 	public Insurance(int id,int durationOfInsurance, int numberOfPersons, int ageOfPersons,
-			double price, String region, String sport, double amount,int additionalInsuranceId) {
+			double price, String region, String sport, double amount,int additionalInsuranceId,String ownerName) {
 		super();
 		this.id = id;
 		this.durationOfInsurance = durationOfInsurance;
@@ -64,8 +65,16 @@ public class Insurance {
 		this.sport = sport;
 		this.amount = amount;
 		this.additionalInsuranceId = additionalInsuranceId;
+		this.ownerName = ownerName;
 	}
 
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+	}
 	public int getAdditionalInsuranceId() {
 		return additionalInsuranceId;
 	}

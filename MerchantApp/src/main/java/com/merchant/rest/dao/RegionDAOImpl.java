@@ -1,5 +1,7 @@
 package com.merchant.rest.dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,6 +27,14 @@ public class RegionDAOImpl implements RegionDAO {
 		Query q = session.createQuery("from Region where name=:name").setString("name", name);
 		Region r = (Region) q.uniqueResult();
 		return r;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Region> getAllRegion() {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Region> list = session.createQuery("from Region").list();
+		return list;
 	}
 
 }

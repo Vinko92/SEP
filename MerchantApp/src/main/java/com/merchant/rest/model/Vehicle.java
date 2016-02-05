@@ -177,15 +177,15 @@ public class Vehicle {
 	}
 	
 	public double getVehicleInsurancePriceTow(int duration,double packagePrice){
-		return duration*(packagePrice/2);
+		return duration*(packagePrice/5);
 	}
 	public double getVehicleInsurancePriceRepair(int duration,double packagePrice){
-		return duration*(packagePrice/2);
+		return duration*(packagePrice/5);
 	}
 	public double getVehicleInsurancePriceHotel(int duration,double packagePrice){
 		return duration*packagePrice;
 	}
 	public double getVehicleInsurancePriceAlternativeTransport(int duration,double packagePrice){
-		return duration*(packagePrice/2);
+		return duration*(packagePrice/5);
 	}
 }

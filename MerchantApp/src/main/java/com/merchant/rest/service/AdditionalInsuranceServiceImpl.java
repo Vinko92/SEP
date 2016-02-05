@@ -1,5 +1,7 @@
 package com.merchant.rest.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,12 @@ public class AdditionalInsuranceServiceImpl implements AdditionalInsuranceServic
 	@Override
 	public void addAdditionalInsurance(AdditionalInsurance ai) {
 		this.additionalInsuranceDAO.addAdditionalInsurance(ai);
+	}
+
+	@Transactional
+	@Override
+	public List<AdditionalInsurance> getAllAdditionalInsurance() {
+		return this.additionalInsuranceDAO.getAllAdditionalInsurance();
 	}
 	
 	

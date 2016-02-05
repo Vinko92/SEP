@@ -28,6 +28,20 @@ public class InsuranceDAOImpl implements InsuranceDAO{
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(insurance);
 	}
+
+	@Override
+	public Insurance getInsuranceByOwnerName(String ownerName) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from Insurance where ownerName=:ownerName").setString("ownerName", ownerName);
+		Insurance i = (Insurance) q.uniqueResult();
+		return i;
+	}
+
+	@Override
+	public void saveInsurance(Insurance i) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(i);
+	}
 	
 
 	

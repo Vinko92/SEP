@@ -13,4 +13,6 @@ public interface CustomerDAO {
 	public void removeCustomer(int id);
 	public Customer getCustomerByName(String name);
 	public int getCustomerIdByCustomerName(String name);
+	public void setCustomerOwnerByJmbg(String jmbg);
+
 }

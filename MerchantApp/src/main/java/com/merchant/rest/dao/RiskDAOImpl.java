@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.merchant.rest.model.Risk;
-import com.merchant.rest.model.User;
+
 
 @Repository("riskDAO")
 public class RiskDAOImpl implements RiskDAO{

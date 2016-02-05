@@ -24,7 +24,7 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet>
-		<servlet-name>userServlet</servlet-name>
+		<servlet-name>travelInsuranceServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -33,7 +33,16 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet>
-		<servlet-name>insuranceServlet</servlet-name>
+		<servlet-name>homeInsuranceServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>vehicleInsuranceServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -51,17 +60,20 @@
        <filter-name>CORSFilter</filter-name>
        <url-pattern>/service/*</url-pattern>
    </filter-mapping>
-		
-	<servlet-mapping>
-		<servlet-name>userServlet</servlet-name>
-		<url-pattern>/user/*</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>customerServlet</servlet-name>
 		<url-pattern>/customer/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>insuranceServlet</servlet-name>
-		<url-pattern>/insurance/*</url-pattern>
+		<servlet-name>travelInsuranceServlet</servlet-name>
+		<url-pattern>/travelInsurance/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>homeInsuranceServlet</servlet-name>
+		<url-pattern>/homeInsurance/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>vehicleInsuranceServlet</servlet-name>
+		<url-pattern>/vehicleInsurance/*</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -46,7 +46,6 @@
 			<bean:list>
 					<bean:value>com.merchant.rest.model.AdditionalInsurance</bean:value>
 				 	<bean:value>com.merchant.rest.model.Customer</bean:value>  
-					<bean:value>com.merchant.rest.model.User</bean:value>
 					<bean:value>com.merchant.rest.model.Home</bean:value>
 					<bean:value>com.merchant.rest.model.Risk</bean:value>
 					<bean:value>com.merchant.rest.model.Insurance</bean:value>  
@@ -70,15 +69,7 @@
 	</bean:bean>  
 	<bean:bean id="customerService" class="com.merchant.rest.service.CustomerServiceImpl">
 		<bean:property name="customerDAO" ref="customerDAO"></bean:property>
-	</bean:bean>  
-	
-	<bean:bean id="userDAO" class="com.merchant.rest.dao.UserDAOImpl">
-		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean:bean>  
-	<bean:bean id="userService" class="com.merchant.rest.service.UserServiceImpl">
-		<bean:property name="userDAO" ref="userDAO"></bean:property>
-	</bean:bean>  
-	  
+	</bean:bean>   
 	<bean:bean id="homeDAO" class="com.merchant.rest.dao.HomeDAOImpl">
 		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean:bean>  

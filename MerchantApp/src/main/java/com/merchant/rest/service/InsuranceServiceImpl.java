@@ -29,4 +29,16 @@ public class InsuranceServiceImpl implements InsuranceService {
 		this.insuranceDAO.addInsurance(insurance);
 	}
 
+	@Transactional
+	@Override
+	public Insurance getInsuranceByOwnerName(String ownerName) {
+		return this.insuranceDAO.getInsuranceByOwnerName(ownerName);
+	}
+
+	@Transactional
+	@Override
+	public void saveInsurance(Insurance i) {
+		this.insuranceDAO.saveInsurance(i);
+	}
+
 }

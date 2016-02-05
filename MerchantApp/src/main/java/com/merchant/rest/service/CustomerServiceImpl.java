@@ -68,5 +68,11 @@ public class CustomerServiceImpl implements CustomerService{
 		return this.customerDAO.getCustomerIdByCustomerName(name);
 	}
 
+	@Transactional
+	@Override
+	public void setCustomerOwnerByJmbg(String jmbg) {
+		this.customerDAO.setCustomerOwnerByJmbg(jmbg);
+	}
+
 	
 }

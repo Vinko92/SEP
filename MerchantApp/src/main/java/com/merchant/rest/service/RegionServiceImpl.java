@@ -1,5 +1,7 @@
 package com.merchant.rest.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,12 @@ public class RegionServiceImpl implements RegionService {
 	@Override
 	public Region getRegionByName(String name) {
 		return this.regionDAO.getRegionByName(name);
+	}
+
+	@Transactional
+	@Override
+	public List<Region> getAllRegion() {
+		return this.regionDAO.getAllRegion();
 	}
 
 }

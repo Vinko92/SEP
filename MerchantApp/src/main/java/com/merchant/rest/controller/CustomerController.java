@@ -60,7 +60,7 @@ public class CustomerController {
 	        
 	 
 	        for(Customer c : customerService.listCustomers()){
-	        	if(c.getId() == customer.getId()){
+	        	if(c.getJmbg() == customer.getJmbg()){
 	  	            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 	        	}
 	        }

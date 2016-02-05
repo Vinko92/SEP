@@ -1,5 +1,7 @@
 package com.merchant.rest.dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,6 +25,14 @@ public class AdditionalInsuranceDAOImpl implements AdditionalInsuranceDAO {
 	public void addAdditionalInsurance(AdditionalInsurance ai) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(ai);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<AdditionalInsurance> getAllAdditionalInsurance() {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<AdditionalInsurance> list = session.createQuery("from AdditionalInsurance").list();
+		return list;
 	}
 
 }
