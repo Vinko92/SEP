@@ -1,0 +1,39 @@
+html, body {
+  height: 100%;
+  padding: 0px;
+  min-height: 100%; }
+
+.orange-background {
+  background-image: url("../content/image/orange.jpg");
+  background-size: cover; }
+
+.title {
+  color: #f2f2f2;
+  margin-top: 30%;
+  text-align: center; }
+
+.blue-background {
+  background-color: #149fff;
+  background-image: url("../content/image/theme.jpg");
+  background-size: cover; }
+
+.cursive-font {
+  font-family: "Comic Sans MS", cursive, sans-serif; }
+
+.panel-login {
+  margin-top: 15%;
+  padding: 0px;
+  border: 1px solid #149fff; }
+
+.panel-login-heading {
+  background-color: #149fff;
+  width: 100%;
+  color: white; }
+
+.btn-blue {
+  color: white;
+  background-color: #149fff; }
+
+.btn-orange {
+  color: white;
+  background-color: #ff7900; }
