@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Safe Guard</title>
+	<link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="./dist/all.min.css" rel="stylesheet"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body ng-app="safeguard.core">
+
+	<div class="col-md-3 col-xs-12 blue-background" style="height:1000px;">
+		<div ui-view="horizontal-navigation"></div>
+	</div>
+	
+	<div class="col-md-9 col-xs-12 " style="height:1000px;">
+		<div ui-view="content">
+	</div>
+		
+	</div>
+	<script type="text/javascript" src="./bower_components/angular/angular.js" ></script>
+	<script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.min.js" ></script>
+	<script type="text/javascript" src="./bower_components/angular-route/angular-route.js" ></script>
+	<script type="text/javascript" src="./bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="./bower_components/bootstrap/dist/js/bootstrap.js"> </script>
+	<script type="text/javascript" src="./bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+	<script type="text/javascript" src="./app/app.js"></script>
+	<script type="text/javascript" src="./app/core/app.route.js"></script>
+	<script type="text/javascript" src="./app/core/home.controller.js"></script>
+	<script type="text/javascript" src="./app/core/auth/auth.controller.js"></script>
+	<script type="text/javascript" src="./app/core/auth/auth.service.js"></script>
+	<script type="text/javascript" src="./app/shared/index_directives.js"></script>
+	<script type="text/javascript" src="./app/shared/header.controller.js"></script>
+	
+</body>
+</html>

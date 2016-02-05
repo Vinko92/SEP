@@ -1,0 +1,50 @@
+$orange-color:#ff7900;
+$blue-color:#149fff;
+$disabled-color:#D8D8D8;
+
+html,body{
+height:100%;
+padding:0px;
+min-height:100%;
+}
+
+.orange-background{
+background-image: url('../content/image/orange.jpg');
+background-size:cover;
+}
+.title{
+color: #f2f2f2;
+margin-top: 30%;
+text-align: center;
+}
+
+.blue-background{
+background-color:$blue-color;
+background-image: url('../content/image/theme.jpg');
+background-size:cover;
+}
+.cursive-font{
+font-family:"Comic Sans MS", cursive, sans-serif;
+}
+
+.panel-login{
+
+margin-top:15%;
+padding:0px;
+border:1px solid $blue-color;
+}
+
+.panel-login-heading{
+background-color:$blue-color;
+width:100%;
+color:white;
+}
+
+.btn-blue{
+color:white;
+background-color:$blue-color;
+}
+.btn-orange{
+color:white;
+background-color:$orange-color;
+}
