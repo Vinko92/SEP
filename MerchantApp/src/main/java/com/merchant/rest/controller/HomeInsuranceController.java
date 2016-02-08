@@ -83,6 +83,7 @@ public class HomeInsuranceController {
 	}
 	
 	@RequestMapping(value = "/homeInsurance", method = RequestMethod.POST)
+
 	public ResponseEntity<Double> homeInsrurance(@RequestBody Home home,UriComponentsBuilder ucBuilder){
 		
 		String riskName = home.getTypeOfRisk();
@@ -93,12 +94,15 @@ public class HomeInsuranceController {
 		Customer c = customerService.getCustomerByName(home.getOwnerName());
 		Insurance i = insuranceService.getInsuranceByOwnerName(home.getOwnerName());
 		
+
 		if(r == null || c == null || (!c.getJmbg().equals(home.getOwnerJmbg()))){
 			return new ResponseEntity<Double>(HttpStatus.CONFLICT);
 		}
 		if(!c.isOwner()){
 			return new ResponseEntity<Double>(HttpStatus.CONFLICT);
 		}
+		
+	
 		
 		double price = home.homeInsurancePrice(home.getDurationOfInsurance(), home.getSurface(), home.getAge(),
 				home.getEstimatedValue(),r.getPrice());
@@ -113,11 +117,11 @@ public class HomeInsuranceController {
 		insuranceService.saveInsurance(i);
 		additionalInsuranceService.addAdditionalInsurance(additionalInsurance);
 		
+
 	
 //		HttpHeaders headers = new HttpHeaders();
 //        headers.setLocation(ucBuilder.path("/homeInsurance/{id}").buildAndExpand(price).toUri());
         return new ResponseEntity<Double>(price, HttpStatus.OK);
 	}
-	
 	
 }

@@ -24,9 +24,7 @@ import com.merchant.rest.service.CustomerService;
 @Controller
 @RequestMapping("/")
 public class CustomerController {
-	
-	public int id;
-	
+
 	@Autowired
 	private CustomerService customerService;
 	

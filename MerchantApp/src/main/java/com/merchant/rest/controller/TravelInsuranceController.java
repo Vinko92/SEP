@@ -83,6 +83,7 @@ public class TravelInsuranceController {
 	
 	@RequestMapping(value = "/travelInsurance",method = RequestMethod.POST)
 	public ResponseEntity<Double> travelInsurance(@RequestBody Insurance insurance,UriComponentsBuilder ucBuilder){
+
 		String regionName = insurance.getRegion();
 		Sport s = sportService.getSportByName(insurance.getSport());
 		Customer c = customerService.getCustomerByName(insurance.getOwnerName());
@@ -114,8 +115,7 @@ public class TravelInsuranceController {
 								continue;
 							}
 						}
-						insuranceService.addInsurance(insurance);
-						
+						insuranceService.addInsurance(insurance);			
 				        
 				        return new ResponseEntity<Double>(price1, HttpStatus.OK);
 					}else if (insurance.getAgeOfPersons() >= 18 && insurance.getAgeOfPersons() < 60){
@@ -129,8 +129,11 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 						
 				        return new ResponseEntity<Double>(price2, HttpStatus.OK);
+
+				
 					}else if (insurance.getAgeOfPersons() >= 60){
 						double price3 = pricePerPerson - pricePerPerson/20;
 						insurance.setPrice(price3);
@@ -142,6 +145,7 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 				        return new ResponseEntity<Double>(price3, HttpStatus.OK);
 					}
 					break;
@@ -166,7 +170,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 				        return new ResponseEntity<Double>(price1, HttpStatus.OK);
+
+						
 					}else if (insurance.getAgeOfPersons() >= 18 && insurance.getAgeOfPersons() < 60){
 						double price2 = pricePerPerson;
 						insurance.setPrice(price2);
@@ -178,7 +185,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 				        return new ResponseEntity<Double>(price2, HttpStatus.OK);
+
+						
 					}else if (insurance.getAgeOfPersons() >= 60){
 						double price3 = pricePerPerson - pricePerPerson/20;
 						insurance.setPrice(price3);
@@ -190,7 +200,9 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 				        return new ResponseEntity<Double>(price3, HttpStatus.OK);
+
 					}
 					break;
 				}
@@ -214,7 +226,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 				        return new ResponseEntity<Double>(price1, HttpStatus.OK);
+
+						
 					}else if (insurance.getAgeOfPersons() >= 18 && insurance.getAgeOfPersons() < 60){
 						double price2 = pricePerPerson;
 						insurance.setPrice(price2);
@@ -226,7 +241,9 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 				        return new ResponseEntity<Double>(price2, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 60){
 						double price3 = pricePerPerson - pricePerPerson/20;
 						insurance.setPrice(price3);
@@ -238,7 +255,9 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 				        return new ResponseEntity<Double>(price3, HttpStatus.OK);
+
 					}
 					break;
 				}
@@ -262,7 +281,9 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 				        return new ResponseEntity<Double>(price1, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 18 && insurance.getAgeOfPersons() < 60){
 						double price2 = pricePerPerson;
 						insurance.setPrice(price2);
@@ -275,7 +296,9 @@ public class TravelInsuranceController {
 						}
 						insuranceService.addInsurance(insurance);
 
+
 				        return new ResponseEntity<Double>(price2, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 60){
 						double price3 = pricePerPerson - pricePerPerson/20;
 						insurance.setPrice(price3);
@@ -287,8 +310,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 		
 				        return new ResponseEntity<Double>(price3, HttpStatus.OK);
+
 					}
 					break;
 				}
@@ -313,7 +338,9 @@ public class TravelInsuranceController {
 						}
 						insuranceService.addInsurance(insurance);
 
+
 				        return new ResponseEntity<Double>(price1, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 18 && insurance.getAgeOfPersons() < 60){
 						double price2 = pricePerPerson;
 						insurance.setPrice(price2);
@@ -327,6 +354,7 @@ public class TravelInsuranceController {
 						insuranceService.addInsurance(insurance);
 
 				        return new ResponseEntity<Double>(price2, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 60){
 						double price3 = pricePerPerson - pricePerPerson/20;
 						insurance.setPrice(price3);
@@ -338,8 +366,9 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
-			
+
 				        return new ResponseEntity<Double>(price3, HttpStatus.OK);
+
 					}
 					break;
 				}
@@ -363,8 +392,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 			
 				        return new ResponseEntity<Double>(price1, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 18 && insurance.getAgeOfPersons() < 60){
 						double price2 = pricePerPerson;
 						insurance.setPrice(price2);
@@ -376,8 +407,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 					
 				        return new ResponseEntity<Double>(price2, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 60){
 						double price3 = pricePerPerson - pricePerPerson/20;
 						insurance.setPrice(price3);
@@ -389,8 +422,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 						
 				        return new ResponseEntity<Double>(price3, HttpStatus.OK);
+
 					}
 					break;
 				}
@@ -414,8 +449,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 						
 				        return new ResponseEntity<Double>(price1, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 18 && insurance.getAgeOfPersons() < 60){
 						double price2 = pricePerPerson;
 						insurance.setPrice(price2);
@@ -427,8 +464,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 						
 				        return new ResponseEntity<Double>(price2, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 60){
 						double price3 = pricePerPerson - pricePerPerson/20;
 						insurance.setPrice(price3);
@@ -440,8 +479,9 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
-				
+
 				        return new ResponseEntity<Double>(price3, HttpStatus.OK);
+
 					}
 					break;
 				}
@@ -465,8 +505,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 						
 				        return new ResponseEntity<Double>(price1, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 18 && insurance.getAgeOfPersons() < 60){
 						double price2 = pricePerPerson;
 						insurance.setPrice(price2);
@@ -478,8 +520,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 						
 				        return new ResponseEntity<Double>(price2, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 60){
 						double price3 = pricePerPerson - pricePerPerson/20;
 						insurance.setPrice(price3);
@@ -491,8 +535,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 				
 				        return new ResponseEntity<Double>(price3, HttpStatus.OK);
+
 					}
 					break;
 				}
@@ -516,8 +562,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 						
 				        return new ResponseEntity<Double>(price1, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 18 && insurance.getAgeOfPersons() < 60){
 						double price2 = pricePerPerson;
 						insurance.setPrice(price2);
@@ -529,8 +577,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 						
 				        return new ResponseEntity<Double>(price2, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 60){
 						double price3 = pricePerPerson - pricePerPerson/20;
 						insurance.setPrice(price3);
@@ -542,8 +592,9 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
-				
+	
 				        return new ResponseEntity<Double>(price3, HttpStatus.OK);
+
 					}
 					break;
 				}
@@ -567,8 +618,11 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 					
 				        return new ResponseEntity<Double>(price1, HttpStatus.OK);
+
+					
 					}else if (insurance.getAgeOfPersons() >= 18 && insurance.getAgeOfPersons() < 60){
 						double price2 = pricePerPerson;
 						insurance.setPrice(price2);
@@ -580,8 +634,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 					
 				        return new ResponseEntity<Double>(price2, HttpStatus.OK);
+
 					}else if (insurance.getAgeOfPersons() >= 60){
 						double price3 = pricePerPerson - pricePerPerson/20;
 						insurance.setPrice(price3);
@@ -593,8 +649,10 @@ public class TravelInsuranceController {
 							}
 						}
 						insuranceService.addInsurance(insurance);
+
 				
 				        return new ResponseEntity<Double>(price3, HttpStatus.OK);
+
 					}
 					break;
 				}
@@ -602,7 +660,9 @@ public class TravelInsuranceController {
 					break;
 				}
 			
+
 		return new ResponseEntity<Double>(HttpStatus.CONFLICT);
+
 		
 	}
 }
