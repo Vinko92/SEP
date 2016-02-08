@@ -15,7 +15,7 @@
 		
 		self.logOut = function(){
 			service.logout();
-		}
+		};
 		
 	}
 	

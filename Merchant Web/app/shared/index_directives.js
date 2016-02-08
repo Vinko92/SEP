@@ -29,7 +29,7 @@
 					document.getElementById('error-messsage').show();
 				}
 			}
-		}
+		};
 	});
 	
 })();

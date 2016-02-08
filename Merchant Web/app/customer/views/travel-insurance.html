@@ -1,0 +1,93 @@
+<div class="content col-md-12" style="padding-left:100px;margin-top:100px;">
+    <navigation></navigation>
+    <div class="col-md-12">
+        <h1 style="display:inline">Travel Insurance</h1>
+    </div>
+    <widget-feedback></widget-feedback>
+    <form>
+        <div class="panel panel-default col-md-5" style="padding:0px;margin-top:20px;">
+            <div class="panel-heading" >
+                <h2 class="panel-title">Basic Info</h2>
+            </div>
+            <div class="panel-body" style=" margin-bottom:10px">
+                <div class="col-md-11">
+                    <div class="col-md-5" style="margin:10px;">
+                        <label class="form-controll">Duration (days)</label>
+                        <input type="text" class="form-control" ng-model="travel.durationOfInsurance" />
+                    </div>
+                    <div class="col-md-5" style="margin:10px;">
+                        <label class="form-controll">Number of persons</label>
+                        <input type="text" class="form-control" ng-model="travel.numberOfPersons" >
+                    </div>
+                    <div class="col-md-5" style="margin:10px;">
+                        <label class="form-controll">Age of persons</label>
+                        <input type="text" class="form-control" ng-model="travel.ageOfPersons"  >
+                    </div>
+                    <div class="col-md-5" style="margin:10px;">
+                        <label class="form-controll">Owner name</label>
+                        <input type="text" class="form-control" ng-model="travel.ownerName" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default col-md-5 col-md-offset-1" style="padding:0px;margin-top:20px;">
+            <div class="panel-heading" >
+                <h2 class="panel-title">Additional Info</h2>
+            </div>
+            <div class="panel-body" style=" margin-bottom:10px">
+                <div class="col-md-11" style="padding-left:30px;">
+                    <div class="col-md-5" style="margin:10px;">
+                        <label class="form-controll">Region</label>
+                        <select class="form-control" ng-model="travel.region">
+                            <option value="Europe">Europe</option>
+                            <option value="North America">North America</option>
+                            <option value="South America">South America</option>
+                            <option value="Central America">Central America</option>
+                            <option value="Asia">Asia</option>
+                            <option value="Japan">Japan</option>
+                            <option value="North Africa">North Africa</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="Central Africa">Central Africa</option>
+                            <option value="Australia">Australia</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5" style="margin:10px;">
+                        <label class="form-controll">Sport</label>
+                        <select class="form-control" ng-model="travel.sport">
+                            <option value="Football">Football</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Tennis">Tennis</option>
+                            <option value="Valeyball">Valeyball</option>
+                            <option value="Rafting">Rafting</option>
+                            <option value="Mountaineering">Mountaineering</option>
+                            <option value="Diving">Diving</option>
+                            <option value="Fishing">Fishing</option>
+                            <option value="Skiing">Skiing</option>
+                            <option value="Hunting">Hunting</option>
+                            <option value="Riding">Riding</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5" style="margin:10px;">
+                        <label class="form-controll">Amount (€)</label>
+                        <select class="form-control" ng-model="travel.amount">
+                            <option value="10000">10.000</option>
+                            <option value="15000">15.000</option>
+                            <option value="20000">20.000</option>
+                            <option value="30000">30.000</option>
+                            <option value="50000">50.000</option>
+                            <option value="70000">70.000</option>
+                            <option value="90000">90.000</option>
+                            <option value="100000">100.000</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 pull-right">
+            <button class="btn btn-primary" style="background-color:rgb(16, 162, 104);border:none;margin-bottom:40px;" ng-click="ctrl.travel()">OK</button>
+        </div>
+    </form>
+</div>
+

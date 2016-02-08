@@ -24,15 +24,19 @@ import com.merchant.rest.service.CustomerService;
 @Controller
 @RequestMapping("/")
 public class CustomerController {
+	
+	public int id;
+	
 	@Autowired
 	private CustomerService customerService;
+	
 	@Autowired(required = true)
 	@Qualifier(value = "customerService")
 	public void setCustomerService(CustomerService cs){
 		this.customerService = cs;
 	}
 	
-	@RequestMapping(value = "/customer", method = RequestMethod.GET)
+	@RequestMapping(value = "/customer", method = RequestMethod.GET, consumes = "application/json",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Customer>> listAllCustomers() {
         List<Customer> customers = customerService.listCustomers();
         if(customers.isEmpty()){
@@ -53,16 +57,17 @@ public class CustomerController {
 	}
 	 
 	 
-	 @RequestMapping(value = "/add", method = RequestMethod.POST)
+	 @RequestMapping(value = "/add", method = RequestMethod.POST,consumes = "application/json",produces = MediaType.APPLICATION_JSON_VALUE)
 	    public ResponseEntity<Void> createCustomer (@RequestBody Customer customer,    UriComponentsBuilder ucBuilder) {
 	        
 	 
 	        for(Customer c : customerService.listCustomers()){
-	        	if(c.getId() == customer.getId()){
+	        	if(c.getJmbg() == customer.getJmbg()){
 	  	            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 	        	}
 	        }
 	        customerService.addCustomer(customer);
+	        
 	 
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setLocation(ucBuilder.path("/customer/{id}").buildAndExpand(customer.getId()).toUri());
@@ -81,4 +86,6 @@ public class CustomerController {
 	        customerService.removeCustomer(id);
 	        return new ResponseEntity<Customer>(HttpStatus.NO_CONTENT);
 	 }
+	 
+	
 }

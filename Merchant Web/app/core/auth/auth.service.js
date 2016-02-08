@@ -55,7 +55,7 @@
 		else{
 			return false;
 		}
-	}
+	};
 	
 	
 	return{

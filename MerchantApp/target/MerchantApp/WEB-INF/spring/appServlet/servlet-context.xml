@@ -35,7 +35,7 @@
 		<bean:property name="url"
 			value="jdbc:mysql://localhost:3306/merchant" />
 		<bean:property name="username" value="root" />
-		<bean:property name="password" value="Finsher92" />
+		<bean:property name="password" value="BoJaNFkE92" />
 	</bean:bean>
 
 	<!-- Hibernate 4 SessionFactory Bean definition -->
@@ -44,8 +44,15 @@
 		<bean:property name="dataSource" ref="dataSource" />
 		<bean:property name="annotatedClasses">
 			<bean:list>
+					<bean:value>com.merchant.rest.model.AdditionalInsurance</bean:value>
 				 	<bean:value>com.merchant.rest.model.Customer</bean:value>  
-					<bean:value>com.merchant.rest.model.User</bean:value>    
+					<bean:value>com.merchant.rest.model.Home</bean:value>
+					<bean:value>com.merchant.rest.model.Risk</bean:value>
+					<bean:value>com.merchant.rest.model.Insurance</bean:value>  
+					<bean:value>com.merchant.rest.model.RoadAssistence</bean:value>
+					<bean:value>com.merchant.rest.model.Vehicle</bean:value>
+					<bean:value>com.merchant.rest.model.Region</bean:value>
+					<bean:value>com.merchant.rest.model.Sport</bean:value>
 			</bean:list>
 		</bean:property>
 		<bean:property name="hibernateProperties">
@@ -62,15 +69,62 @@
 	</bean:bean>  
 	<bean:bean id="customerService" class="com.merchant.rest.service.CustomerServiceImpl">
 		<bean:property name="customerDAO" ref="customerDAO"></bean:property>
-	</bean:bean>  
-	<bean:bean id="userDAO" class="com.merchant.rest.dao.UserDAOImpl">
+	</bean:bean>   
+	<bean:bean id="homeDAO" class="com.merchant.rest.dao.HomeDAOImpl">
 		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean:bean>  
-	<bean:bean id="userService" class="com.merchant.rest.service.UserServiceImpl">
-		<bean:property name="userDAO" ref="userDAO"></bean:property>
-	</bean:bean>    
-
+	<bean:bean id="homeService" class="com.merchant.rest.service.HomeServiceImpl">
+		<bean:property name="homeDAO" ref="homeDAO"></bean:property>
+	</bean:bean> 
 	
+	<bean:bean id="insuranceDAO" class="com.merchant.rest.dao.InsuranceDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="insuranceService" class="com.merchant.rest.service.InsuranceServiceImpl">
+		<bean:property name="insuranceDAO" ref="insuranceDAO"></bean:property>
+	</bean:bean> 
+	
+	<bean:bean id="riskDAO" class="com.merchant.rest.dao.RiskDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="riskService" class="com.merchant.rest.service.RiskServiceImpl">
+		<bean:property name="riskDAO" ref="riskDAO"></bean:property>
+	</bean:bean> 
+	
+	<bean:bean id="roadAssistenceDAO" class="com.merchant.rest.dao.RoadAssistenceDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="roadAssistenceService" class="com.merchant.rest.service.RoadAssistenceServiceImpl">
+		<bean:property name="roadAssistenceDAO" ref="roadAssistenceDAO"></bean:property>
+	</bean:bean> 
+	
+	<bean:bean id="vehicleDAO" class="com.merchant.rest.dao.VehicleDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="vehicleService" class="com.merchant.rest.service.VehicleServiceImpl">
+		<bean:property name="vehicleDAO" ref="vehicleDAO"></bean:property>
+	</bean:bean> 
+
+	<bean:bean id="regionDAO" class="com.merchant.rest.dao.RegionDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="regionService" class="com.merchant.rest.service.RegionServiceImpl">
+		<bean:property name="regionDAO" ref="regionDAO"></bean:property>
+	</bean:bean>
+	
+	<bean:bean id="sportDAO" class="com.merchant.rest.dao.SportDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="sportService" class="com.merchant.rest.service.SportServiceImpl">
+		<bean:property name="sportDAO" ref="sportDAO"></bean:property>
+	</bean:bean>
+
+	<bean:bean id="additionalInsuranceDAO" class="com.merchant.rest.dao.AdditionalInsuranceDAOImpl">
+		<bean:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean:bean>  
+	<bean:bean id="additionalInsuranceService" class="com.merchant.rest.service.AdditionalInsuranceServiceImpl">
+		<bean:property name="additionalInsuranceDAO" ref="additionalInsuranceDAO"></bean:property>
+	</bean:bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	

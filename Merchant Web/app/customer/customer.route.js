@@ -26,17 +26,52 @@
 						controllerAs: 'ctrl'
 					}
 				}		
-			})
-           .state('customer.adress', {
-				url:'/customer/adress-info',
+			}).state('customer.travel', {
+				url:'/customer/travel-insurance',
 				views:{
 					'content@' : {
-						templateUrl: '/app/customer/views/adress-info.html',
+						templateUrl: '/app/customer/views/travel-insurance.html',
 						controller: 'CustomerController',
 						controllerAs: 'ctrl'
 					}
-				}		
-			});
+				}
+			}).state('customer.home',{
+                url:'/customer/home-insurance',
+                  views:{
+                      'content@' : {
+                          templateUrl: '/app/customer/views/home-insurance.html',
+                          controller: 'CustomerController',
+                          controllerAs: 'ctrl'
+                      }
+                  }
+            }).state('customer.vehicle',{
+                  url:'/customer/vehicle-insurance',
+                  views:{
+                      'content@' : {
+                          templateUrl: '/app/customer/views/vehicle-insurance.html',
+                          controller: 'CustomerController',
+                          controllerAs: 'ctrl'
+                      }
+                  }
+              }).state('customer.price',{
+                  url:'/customer/home-insurance-price',
+                  views:{
+                      'content@' : {
+                          templateUrl: '/app/customer/views/home-insurance-price.html',
+                          controller: 'CustomerController',
+                          controllerAs: 'ctrl'
+                      }
+                  }
+              }).state('customer.overview',{
+                  url:'/customer/overview',
+                  views:{
+                      'content@' : {
+                          templateUrl: '/app/customer/views/overview.html',
+                          controller: 'CustomerController',
+                          controllerAs: 'ctrl'
+                      }
+                  }
+              })
     }]);
 
 }());
