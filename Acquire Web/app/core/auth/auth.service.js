@@ -22,16 +22,16 @@
 		
 	var logIn = function(data){
 				var deferred = $q.defer();
-				console.log(data);
-				$http.post(serverUrl +'user/login', data)
+				$http.post(serverUrl +'/login', data)
 				     .success(function(response){
 						 _authentication.isLoggedIn = true;
 						 _authentication.username = data.username;
 						 localStorageService.set('username',data.username);
-						 deferred.resolve(response);
+						
+						  deferred.resolve(response);
 					 })
-					 .error(function(error){
-						 deferred.reject(error);
+					 .error(function(response){
+						 deferred.reject(response);
 					 });
 				return deferred.promise;
 				

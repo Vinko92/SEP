@@ -39,6 +39,16 @@
 						controllerAs: 'auth'
 					}
 				}
+			}).
+			state('main.card-details',{
+				url:'/card-details',
+				views:{
+					'content@' : {
+						templateUrl: '/app/core/views/card-details.html',
+						controller: 'HomeController',
+						controllerAs: 'ctrl'
+					}
+				}
 			})
     }]);
 

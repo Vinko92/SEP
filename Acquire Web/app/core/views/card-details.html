@@ -1,0 +1,62 @@
+<div class="panel panel-login col-xs-offset-3 col-xs-6 col-lg-offset-4 col-lg-4">
+    <div class="panel-heading  panel-login-heading">
+        <p class="panel-title" style="font-size:14px">Card details</p>
+    </div>
+    <div class="panel-body" style=" margin-bottom:10px">
+            <div class="form-horizontal">
+				<ul>
+					<li class="text-danger" ng-repeat="message in messages">
+						{{ message }}
+					</li>
+					
+				</ul>
+				<ul>
+				<li class="text-success" ng-repeat="s in success">
+						{{ s }}
+					</li>
+					</ul>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class = "control-label">PAN:</label>
+							<div class="col-md-12">
+								<input required type="text" class="form-control" ng-model="cardData.pan" maxlength="4"/>
+								<span id="username-validation"/ class="text-danger">                           
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class = "control-label">Security Code:</label>
+							<div class="col-md-12">
+								<input required type="text" class="form-control" ng-model="cardData.securityCode"/>
+								<span id="username-validation"/ class="text-danger">                           
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class = "control-label">Expiration Date:</label>
+							<div class="col-md-12">
+								<input required type="text" class="form-control" ng-model="cardData.expirationDate"/>
+								<span id="username-validation"/ class="text-danger">                           
+							</div>
+						</div>  
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class = "control-label">Card Holder:</label>
+							<div class="col-md-12">
+								<input required type="text" class="form-control" ng-model="cardData.cardHolder"/>
+								<span id="username-validation"/ class="text-danger">                           
+							</div>
+						</div>
+					</div>
+                    <div class="form-group col-md-12">
+                        <div class="col-md-offset-2 col-md-12">
+                            <button class="btn btn-blue" ng-click="ctrl.submitPayment()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
