@@ -23,10 +23,13 @@ import sep.safeguard.model.Merchant;
 import sep.safeguard.model.MerchantOrder;
 import sep.safeguard.model.Payment;
 import sep.safeguard.model.Response;
+import sep.safeguard.model.User;
 import sep.safeguard.service.AcquirerOrderService;
 import sep.safeguard.service.MerchantService;
 import sep.safeguard.service.MerchantOrderService;
 import sep.safeguard.service.PaymentService;
+import sep.safeguard.service.UserService;
+import sep.safeguard.utility.Encryptor;
 
 
 @Controller
@@ -40,6 +43,15 @@ public class MainController {
 	@Qualifier(value = "merchantService")
 	public void setMerchantService(MerchantService merchantService){
 		this.merchantService = merchantService;
+	}
+	
+	@Autowired
+	UserService userService;
+	
+	@Autowired(required = true)
+	@Qualifier(value = "userService")
+	public void setUserService(UserService userService){
+		this.userService = userService;
 	}
 	
 	@Autowired
@@ -76,7 +88,7 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/order/create",method = RequestMethod.POST)
-	public ResponseEntity<Response> create(@RequestBody MerchantOrder order, UriComponentsBuilder ucBuilder){
+	public ResponseEntity<Response> createOrder(@RequestBody MerchantOrder order, UriComponentsBuilder ucBuilder){
 		
 		Response response = new Response();
 		try
@@ -105,13 +117,14 @@ public class MainController {
 	}
 	
 
-	@RequestMapping(value = "payment/create/{id}", method = RequestMethod.POST)
-    public ResponseEntity<Response> createPayment(@PathVariable("id")int id, Payment payment) {
+	@RequestMapping(value = "/payment/create/{id}", method = RequestMethod.POST, consumes ="application/json")
+    public ResponseEntity<Response> createPayment(@PathVariable("id")int id,@RequestBody Payment payment) {
 	
 		Response response = new Response();
 		
 		try
 		{
+			System.out.println(payment.getExpirationDate());
 			validatePayment(payment);
 			response = sendRequest(createAcquirerOrder(payment));
 			return new ResponseEntity<Response>(response, HttpStatus.OK);
@@ -128,9 +141,60 @@ public class MainController {
 		}
 		
 	}
-	
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes ="application/json")
+    public ResponseEntity<Response> login(@RequestBody User user) {
+		
+		Response response = new Response();
+		
+		try{
+			validateUser(user);
+			user.setLoggedIn(true);
+			userService.update(user);
+			response.setSuccess(true);
+			response.addMessage("Logged in successfuly");
+			return new ResponseEntity<Response>(response,HttpStatus.OK);
+			
+		}
+		catch(Exception ex)
+		{
+			response.setSuccess(false);
+			
+			for(String message : ex.getMessage().split(System.getProperty("line.separator")))
+			{
+				response.addMessage(message);
+			}
+			
+			return new ResponseEntity<Response>(response,HttpStatus.BAD_REQUEST);
+		}
+		
+	}
 	
 	///Private helper methods
+	
+	private void validateUser(User user) throws Exception
+	{
+		StringBuilder errorList =  new StringBuilder();
+		
+		if(user.getUsername() == null || user.getUsername().equals("") ||
+		   user.getPassword() == null || user.getPassword().equals(""))
+		{
+			errorList.append("Please, provide username and password");
+			errorList.append(System.getProperty("line.separator"));
+		}
+		
+		
+		
+		else if(userService.find(user.getUsername(), Encryptor.MD5(user.getPassword())) == null)
+		{
+			errorList.append("Please, provide valid username and password");
+			errorList.append(System.getProperty("line.separator"));
+		}
+		
+		if(errorList.length() > 0)
+		{
+			throw new Exception(errorList.toString());
+		}
+	}
 	
 	private Response sendRequest(AcquirerOrder order)
 	{
@@ -139,7 +203,7 @@ public class MainController {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<AcquirerOrder> entity = new HttpEntity<AcquirerOrder>(order,headers);
 		String pccServiceUrl = "http://localhost:8080/pcc";
-		return  client.postForObject(pccServiceUrl + "/payment/create",entity, Response.class);
+		return  client.postForObject(pccServiceUrl + "/payment/request",entity, Response.class);
 	}
 	
 	private AcquirerOrder createAcquirerOrder(Payment payment)
@@ -147,7 +211,7 @@ public class MainController {
 		AcquirerOrder order = new AcquirerOrder();
 		order.setAmount(payment.getAmount());
 		order.setCardHolder(payment.getCardHolder());
-		order.setExpirationDate(payment.getExpirationDate());
+		order.setValidTo(payment.getExpirationDate());
 		order.setTimestamp(new Date());
 		order.setPan(payment.getPan());
 		order.setSecurityCode(payment.getSecurityCode());
@@ -157,9 +221,34 @@ public class MainController {
 		
 	}
 	
-	private void validatePayment(Payment payment)
+	private void validatePayment(Payment payment) throws Exception
 	{
+		StringBuilder errorList = new StringBuilder();
+		if(payment.getPan() == null || payment.getPan().equals(""))
+		{
+			errorList.append("Please, provide PAN");
+			errorList.append(System.getProperty("line.separator"));
+		}
+		if(payment.getCardHolder() == null || payment.getCardHolder().equals(""))
+		{
+			errorList.append("Please, provide card holder");
+			errorList.append(System.getProperty("line.separator"));
+		}
+		if(payment.getSecurityCode() == null || payment.getSecurityCode().equals(""))
+		{
+			errorList.append("Please, provide security code");
+			errorList.append(System.getProperty("line.separator"));
+		}
+		if(payment.getExpirationDate() == null || payment.getExpirationDate().equals(""))
+		{
+			errorList.append("Please, provide expiration date.");
+			errorList.append(System.getProperty("line.separator"));
+		}
 		
+		if(errorList.length() > 0)
+		{
+			throw new Exception(errorList.toString());
+		}
 	}
 	
 	private void validate(MerchantOrder order) throws Exception

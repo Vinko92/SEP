@@ -30,5 +30,13 @@
 		<servlet-name>mainServlet</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
-
+<filter>
+      <filter-name>CORSFilter</filter-name>
+       <filter-class>sep.safeguard.filter.CORSFilter</filter-class>  
+   </filter>
+ 
+   <filter-mapping>
+       <filter-name>CORSFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+   </filter-mapping>
 </web-app>

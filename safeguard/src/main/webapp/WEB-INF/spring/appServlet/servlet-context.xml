@@ -47,6 +47,8 @@
 					<bean:value>sep.safeguard.model.MerchantOrder</bean:value>   
 					<bean:value>sep.safeguard.model.Payment</bean:value>  
 					<bean:value>sep.safeguard.model.AcquirerOrder</bean:value>    
+					<bean:value>sep.safeguard.model.AntiforgeryToken</bean:value>
+					<bean:value>sep.safeguard.model.User</bean:value>
 			</bean:list>
 		</bean:property>
 		<bean:property name="hibernateProperties">
@@ -73,6 +75,12 @@
 	<bean:bean id="acquirerOrderService" class="sep.safeguard.service.AcquirerOrderService">
 		<bean:property name="dao" ref="dao"></bean:property>
 	</bean:bean>   
+	<bean:bean id="antiforgeryService" class="sep.safeguard.service.AntiforgeryService">
+		<bean:property name="dao" ref="dao"></bean:property>
+	</bean:bean> 
+	<bean:bean id="userService" class="sep.safeguard.service.UserService">
+		<bean:property name="dao" ref="dao"></bean:property>
+	</bean:bean> 
 
 	
 	

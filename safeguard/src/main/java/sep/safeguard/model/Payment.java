@@ -1,13 +1,18 @@
 package sep.safeguard.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Entity
 @Table(name="payment")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Payment {
 
 	@Id
@@ -27,7 +32,7 @@ public class Payment {
 	private String cardHolder;
 
 	@Column(name ="expirationDate")
-	private String expirationDate;
+	private Date validTo;
 	
 	@Column(name ="amount")
 	private float amount;
@@ -73,12 +78,12 @@ public class Payment {
 		this.cardHolder = cardHolder;
 	}
 
-	public String getExpirationDate() {
-		return expirationDate;
+	public Date getExpirationDate() {
+		return validTo;
 	}
 
-	public void setExpirationDate(String expirationDate) {
-		this.expirationDate = expirationDate;
+	public void setExpirationDate(Date validTo) {
+		this.validTo = validTo;
 	}
 
 	public float getAmount() {

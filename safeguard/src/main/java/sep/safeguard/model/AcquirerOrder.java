@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "acquirerOrder")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AcquirerOrder {
 
 	
@@ -30,7 +33,7 @@ public class AcquirerOrder {
 	private String cardHolder;
 
 	@Column(name ="expirationDate")
-	private String expirationDate;
+	private Date validTo;
 	
 	@Column(name = "amount")
 	private float amount;
@@ -75,12 +78,12 @@ public class AcquirerOrder {
 		this.cardHolder = cardHolder;
 	}
 
-	public String getExpirationDate() {
-		return expirationDate;
+	public Date getValidTo() {
+		return validTo;
 	}
 
-	public void setExpirationDate(String expirationDate) {
-		this.expirationDate = expirationDate;
+	public void setValidTo(Date validTo) {
+		this.validTo = validTo;
 	}
 
 	public float getAmount() {

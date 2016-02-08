@@ -2,6 +2,7 @@ package sep.pcc.rest.controler;
 
 import java.util.Calendar;
 
+import org.junit.runner.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
@@ -16,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import com.google.gson.Gson;
-
 import sep.pcc.rest.constants.Constants;
 import sep.pcc.rest.model.Bank;
 import sep.pcc.rest.model.Payment;
@@ -38,7 +37,7 @@ public class PccController {
 	public void setPaymentService(BankService bankService){
 		this.bankService = bankService;
 	}
-	
+
 	@Autowired
 	PaymentService paymentService;
 	
@@ -98,13 +97,12 @@ public class PccController {
 	}
 	
 	
-	@RequestMapping(value = "/payment/request", method = RequestMethod.POST)
+	@RequestMapping(value = "/payment/request", method = RequestMethod.POST,consumes = "application/json")
 	public ResponseEntity<Response> requestPayment(@RequestBody Payment payment, UriComponentsBuilder ucBuilder){
-		
 		Response response = new Response();
 		
 		try{
-			
+			System.out.println(payment.getValidTo() + " PCC");
 			validate(payment);
 			RestTemplate client = new RestTemplate();
 			HttpHeaders headers = new HttpHeaders();
@@ -112,14 +110,16 @@ public class PccController {
 			HttpEntity<Payment> entity = new HttpEntity<Payment>(payment,headers);
 			String bankServiceUri = getBankServiceUri(payment.getPAN());
 			response = client.postForObject(bankServiceUri + "/withdraw",entity, Response.class);
+			return new ResponseEntity<Response>(response, HttpStatus.OK);
 		}
 		catch(Exception ex){
 			for(String message : ex.getMessage().split(System.getProperty("line.separator"))){
 				response.addMessage(message);
 			}
 			response.setSuccess(false);
+			return new ResponseEntity<Response>(response, HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Response>(response, HttpStatus.OK);
+		
 	}
 	
 	

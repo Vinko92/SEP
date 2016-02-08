@@ -5,9 +5,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_DEFAULT)
 public class Response {
 
 	private List<String> message;
@@ -79,6 +81,8 @@ public class Response {
 	public void setIssuerTimestamp(Date issuerTimestamp) {
 		this.issuerTimestamp = issuerTimestamp;
 	}
+
+
 	
 	
 	
