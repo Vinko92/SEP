@@ -39,12 +39,5 @@ public class HomeServiceImpl implements HomeService{
 		 this.homeDAO.addHomeInsurance(h);
 	}
 
-
-	@Transactional
-	@Override
-	public double getPriceByOwnerJmbg(String ownerJmbg) {
-		return this.homeDAO.getPriceByOwnerJmbg(ownerJmbg);
-	}
-
 	
 }

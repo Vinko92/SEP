@@ -1,6 +1,6 @@
 package com.merchant.rest.service;
 
-
+import java.math.BigDecimal;
 
 import com.merchant.rest.model.Insurance;
 

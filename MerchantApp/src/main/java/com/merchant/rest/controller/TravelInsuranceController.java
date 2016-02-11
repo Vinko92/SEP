@@ -95,7 +95,7 @@ public class TravelInsuranceController {
 		if(!c.isOwner()){
 			customerService.setCustomerOwnerByJmbg(c.getJmbg());
 		}
-				switch(regionName){
+			switch(regionName){
 				case "Europe":{
 					double pricePerPerson = 0;
 					if(s == null){

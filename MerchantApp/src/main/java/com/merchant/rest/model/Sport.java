@@ -1,6 +1,6 @@
 package com.merchant.rest.model;
 
-
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

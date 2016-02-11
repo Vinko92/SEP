@@ -1,6 +1,8 @@
 package com.merchant.rest.dao;
 
+import java.math.BigDecimal;
 
+import javax.transaction.Transactional;
 
 import org.hibernate.Query;
 import org.hibernate.Session;

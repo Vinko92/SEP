@@ -7,6 +7,4 @@ public interface HomeDAO {
 	public Home findHomeById(int id); 
 	public Home findHomeByIdAndPrice(int id, double price);
 
-	public double getPriceByOwnerJmbg(String ownerJmbg);
-
 }

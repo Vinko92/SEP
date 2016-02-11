@@ -1,6 +1,6 @@
 package com.merchant.rest.controller;
 
-
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -87,7 +87,6 @@ public class VehicleInsuranceController {
 	@RequestMapping(value = "/vehicleInsurance",method = RequestMethod.POST)
 	public ResponseEntity<Double> vehicleInsurance(@RequestBody Vehicle vehicle,UriComponentsBuilder ucBuilder){
 
-
 		RoadAssistence ras = roadAssistenceService.getByName(vehicle.getPackages());
 		int ownerId = customerService.getCustomerIdByCustomerName(vehicle.getOwner());
 		AdditionalInsurance additionalInsurance = new AdditionalInsurance();
@@ -95,19 +94,12 @@ public class VehicleInsuranceController {
 		Insurance i = insuranceService.getInsuranceByOwnerName(vehicle.getOwner());
 		
 		
-		if(c == null || (!vehicle.getOwnerJmbg().equals(c.getJmbg()))){
-			return new ResponseEntity<Double>(HttpStatus.CONFLICT);
-		}
-		if(!c.isOwner()){
-			return new ResponseEntity<Double>(HttpStatus.CONFLICT);
-
-		Session session = this.sessionFactory.getCurrentSession();
 		
 		if(c == null || (!vehicle.getOwnerJmbg().equals(c.getJmbg()))){
-			return new ResponseEntity<Integer>(HttpStatus.CONFLICT);
+			return new ResponseEntity<Double>(HttpStatus.CONFLICT);
 		}
 		if(!c.isOwner()){
-			return new ResponseEntity<Integer>(HttpStatus.CONFLICT);
+			return new ResponseEntity<Double>(HttpStatus.CONFLICT);
 		}
 		
 		
@@ -123,10 +115,7 @@ public class VehicleInsuranceController {
 			i.setAdditionalInsuranceId(vehicle.getId());
 			insuranceService.saveInsurance(i);
 			additionalInsuranceService.addAdditionalInsurance(additionalInsurance);
-
-			
 			return new ResponseEntity<Double>(price,HttpStatus.OK);	
-			
 		}else if(ras.getName().equals("Repair")){
 			double price = vehicle.getVehicleInsurancePriceRepair(vehicle.getDurationOfInsurance(), ras.getPriceOfRoadAssistence());
 			vehicle.setPrice(price);
@@ -139,10 +128,7 @@ public class VehicleInsuranceController {
 			i.setAdditionalInsuranceId(vehicle.getId());
 			insuranceService.saveInsurance(i);
 			additionalInsuranceService.addAdditionalInsurance(additionalInsurance);
-
-			
 			return new ResponseEntity<Double>(price,HttpStatus.OK);	
-
 		}else if(ras.getName().equals("Hotel")){
 			double price = vehicle.getVehicleInsurancePriceHotel(vehicle.getDurationOfInsurance(), ras.getPriceOfRoadAssistence());
 			vehicle.setPrice(price);
@@ -155,11 +141,7 @@ public class VehicleInsuranceController {
 			i.setAdditionalInsuranceId(vehicle.getId());
 			insuranceService.saveInsurance(i);
 			additionalInsuranceService.addAdditionalInsurance(additionalInsurance);
-
-		
 			return new ResponseEntity<Double>(price,HttpStatus.OK);	
-
-			
 		}else if(ras.getName().equals("Alternative Transport")){
 			double price = vehicle.getVehicleInsurancePriceAlternativeTransport(vehicle.getDurationOfInsurance(), ras.getPriceOfRoadAssistence());
 			vehicle.setPrice(price);
@@ -172,14 +154,10 @@ public class VehicleInsuranceController {
 			i.setAdditionalInsuranceId(vehicle.getId());
 			insuranceService.saveInsurance(i);
 			additionalInsuranceService.addAdditionalInsurance(additionalInsurance);
-
-	
 			return new ResponseEntity<Double>(price,HttpStatus.OK);	
 		}
 		
 			return new ResponseEntity<Double>(HttpStatus.CONFLICT);
-
-		
 		
 
 	}

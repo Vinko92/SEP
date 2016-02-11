@@ -146,7 +146,6 @@ public class Home{
 	}
 
 	public double homeInsurancePrice(int durationOfInsurance,double surface,double age,double estimetedValue,double riskPrice) {
-		return durationOfInsurance*(surface/1000 + age/100 + estimetedValue/10000 + riskPrice);
-
+		return durationOfInsurance*(surface + age/5 + estimetedValue/10000 + riskPrice);
 	}
 }

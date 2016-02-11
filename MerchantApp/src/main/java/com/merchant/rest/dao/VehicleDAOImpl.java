@@ -1,6 +1,5 @@
 package com.merchant.rest.dao;
 
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,14 +23,6 @@ public class VehicleDAOImpl implements VehicleDAO {
 	public void addVehicle(Vehicle v) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(v);
-	}
-
-	@Override
-	public double getPriceByOwnerJmbg(String ownerJmbg) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Query q = session.createQuery("from Vehicle where ownerJmbg=:ownerJmbg").setString("ownerJmbg", ownerJmbg);
-		Vehicle v = (Vehicle) q.uniqueResult();
-		return v.getPrice();
 	}
 
 }

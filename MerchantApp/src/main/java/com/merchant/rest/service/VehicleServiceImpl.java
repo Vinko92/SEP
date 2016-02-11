@@ -27,10 +27,4 @@ public class VehicleServiceImpl implements VehicleService {
 		this.vehicleDAO.addVehicle(v);
 	}
 
-	@Transactional
-	@Override
-	public double getPriceByOwnerJmbg(String ownerJmbg) {
-		return this.vehicleDAO.getPriceByOwnerJmbg(ownerJmbg);
-	}
-
 }

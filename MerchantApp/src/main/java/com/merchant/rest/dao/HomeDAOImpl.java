@@ -41,12 +41,4 @@ public class HomeDAOImpl implements HomeDAO {
 		session.persist(h);
 	}
 
-	@Override
-	public double getPriceByOwnerJmbg(String ownerJmbg) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Query q = session.createQuery("from Home where ownerJmbg=:ownerJmbg").setString("ownerJmbg", ownerJmbg);
-		Home h = (Home) q.uniqueResult();
-		return h.getPrice();
-	}
-
 }
