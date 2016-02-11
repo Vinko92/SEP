@@ -108,7 +108,6 @@ public class BankController {
 	
 	private Card getCard(Payment payment) throws ParseException
 	{
-		System.out.println(payment.getCardHolder() + payment.getSecurityCode() + payment.getValidTo());
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = format.parse(format.format(payment.getValidTo()));
 		return cardService.find(payment.getSecurityCode(), 
