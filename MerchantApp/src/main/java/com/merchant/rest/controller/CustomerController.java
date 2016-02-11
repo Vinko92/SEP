@@ -5,6 +5,11 @@ import java.util.List;
 
 
 
+
+
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.merchant.rest.model.Customer;
@@ -24,7 +30,9 @@ import com.merchant.rest.service.CustomerService;
 @Controller
 @RequestMapping("/")
 public class CustomerController {
-
+	
+	@Autowired
+	private SessionFactory sessionFactory;
 	@Autowired
 	private CustomerService customerService;
 	
@@ -32,6 +40,11 @@ public class CustomerController {
 	@Qualifier(value = "customerService")
 	public void setCustomerService(CustomerService cs){
 		this.customerService = cs;
+	}
+	
+	@Autowired(required = true)
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 	
 	@RequestMapping(value = "/customer", method = RequestMethod.GET, consumes = "application/json",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -44,7 +57,7 @@ public class CustomerController {
     }
 	
 	 @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	    public ResponseEntity<Customer> getCustomer(@PathVariable("id") int id) {
+	 public ResponseEntity<Customer> getCustomer(@PathVariable("id") int id) {
 	       
 	        Customer customer = customerService.getCustomerById(id);
 	        if (customer == null) {
@@ -56,7 +69,7 @@ public class CustomerController {
 	 
 	 
 	 @RequestMapping(value = "/add", method = RequestMethod.POST,consumes = "application/json",produces = MediaType.APPLICATION_JSON_VALUE)
-	    public ResponseEntity<Void> createCustomer (@RequestBody Customer customer,    UriComponentsBuilder ucBuilder) {
+	 public ResponseEntity<Void> createCustomer (@RequestBody Customer customer,UriComponentsBuilder ucBuilder) {
 	        
 	 
 	        for(Customer c : customerService.listCustomers()){
@@ -74,7 +87,7 @@ public class CustomerController {
 	 
 	 
 	 @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	    public ResponseEntity<Customer> deleteCustomer(@PathVariable("id") int id) {
+	 public ResponseEntity<Customer> deleteCustomer(@PathVariable("id") int id) {
 	        
 	        Customer customer = customerService.getCustomerById(id);
 	        if (customer == null) {
@@ -85,5 +98,15 @@ public class CustomerController {
 	        return new ResponseEntity<Customer>(HttpStatus.NO_CONTENT);
 	 }
 	 
+	 @RequestMapping(value = "/login",method = RequestMethod.POST)
+	 public ResponseEntity<Void> userLogin(@RequestBody Customer customer,UriComponentsBuilder ucBuilder){
+		 
+		 for(Customer c : customerService.listCustomers()){
+			 if((c.getUsername().equals(customer.getUsername()) && (c.getPassword().equals(customer.getPassword())))){
+				 return new ResponseEntity<Void>(HttpStatus.OK);
+			 }
+		 }
+		 return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+	 }
 	
 }
