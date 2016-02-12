@@ -62,8 +62,8 @@
 
         var onSuccessfullTravelInsurance = function(){
             $scope.successMessages.push('You have been bought successfully.');
-            $scope.travelPrice = response.data;
             window.location.href = '#/customer/home-insurance';
+//            $scope.travelPrice = response.data;
         };
         var onErrorTravelInsurance = function(){
             $scope.errorMessages.push('Invalid attempt. Please insert valid data.');
@@ -76,8 +76,8 @@
 
         var onSuccessfullHomeInsurance = function(){
             $scope.successMessages.push('You have been bought successfully.');
-            $scope.homePrice = response.data;
             window.location.href = '#/customer/vehicle-insurance';
+//            $scope.homePrice = response.data;
         };
         var onErrorHomeInsurance = function(){
             $scope.errorMessages.push('Invalid attempt. Please insert valid data.');
@@ -90,8 +90,8 @@
 
         var onSuccessfullVehiclensurance = function(){
             $scope.successMessages.push('You have been bought successfully.');
-            $scope.vehiclePrice = response.data;
             window.location.href = '#/customer/overview';
+//            $scope.vehiclePrice = response.data;
         };
         var onErrorVehicleInsurance = function(){
             $scope.errorMessages.push('Invalid attempt. Please insert valid data.');
