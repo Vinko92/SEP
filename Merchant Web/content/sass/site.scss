@@ -2,12 +2,12 @@ $theme-color:rgb(16, 162, 104);
 $disabled-color:#D8D8D8;
 
 html,body{
-height:100%;
+min-height:1000px;
 }
 
 .register-tab{
 	float:left;
-	margin-left:20px;
+	margin-left:70px;
 	margin-right:20px;
 	border-bottom:2px solid $disabled-color;
 	color:$disabled-color;
@@ -33,7 +33,7 @@ height:100%;
 
 .register-tab-active{
 	float:left;
-	margin-left:20px;
+	margin-left:70px;
 	margin-right:20px;
 	border-bottom: 2px solid $theme-color;
 	color:$theme-color;
@@ -99,10 +99,12 @@ height:100%;
 }
 
 .footer{
-width:100%;
-bottom:0;
-height:200px;
-background-color:#1a1a1a;
-padding-left:60px; 
-margin:0 auto;
+	width:100%;
+	bottom:0;
+	height:200px;
+	clear:both;
+	position:relative;
+	background-color:#1a1a1a;
+	padding-left:60px; 
+	margin:0 auto;
 }

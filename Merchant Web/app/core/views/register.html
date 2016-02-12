@@ -6,43 +6,60 @@
             <div class="form-horizontal">
                 <h4>Register</h4>
                 <hr />
-
+		<form name="registerData" novalidate>
                 <div class="col-md-12">
                     <div class="form-group">
 						<label class = "control-label col-md-3">First name:</label>
                         <div class="col-md-9">
-							<input type="text" class="form-control" ng-model="registerData.name"/>
-                            <span id="username-validation"/ class="text-danger">                           
+							<input type="text" class="form-control" name="firstName" ng-model="registerData.name" required ng-minlength="3" ng-maxlength="15"/>
+                            <p id="firstName-validation" class="text-danger" ng-show="registerData.firstName.$error.required && (registerData.firstName.$dirty || registerData.firstName.$touched)">This field is required!</p>
+							<p id="firstName-validation" class="text-danger" ng-show="registerData.firstName.$error.minlength && registerData.firstName.$touched">First name must have at least 3 characters!</p> 	
+							<p id="firstName-validation" class="text-danger" ng-show="registerData.firstName.$error.maxlength && registerData.firstName.$touched">First name can not contain more then 9 characters!</p>	
                         </div>
                     </div>
 					<div class="form-group">
 						<label class = "control-label col-md-3">Last name:</label>
                         <div class="col-md-9">
-							<input type="text" class="form-control" ng-model="registerData.surname"/>
-                            <span id="username-validation"/ class="text-danger">                           
+							<input type="text" class="form-control" name="lastName" ng-model="registerData.surname" required ng-minlength="3" ng-maxlength="15"/>
+                            <span id="lastName-validation" class="text-danger" ng-show="registerData.lastName.$error.required  && (registerData.lastName.$dirty || registerData.lastName.$touched)">This field is required!</p>
+							<span id="lastName-validation" class="text-danger" ng-show="registerData.lastName.$error.minlength && registerData.lastName.$touched">Last name must have at least 3 characters!</p> 	
+							<span id="lastName-validation" class="text-danger" ng-show="registerData.lastName.$error.maxlength && registerData.lastName.$touched">Last name can not contain more then 9 characters!</p>     
                         </div>
                     </div>
 					<div class="form-group">
 						<label class = "control-label col-md-3">Username</label>
                         <div class="col-md-9">
-							<input type="text" class="form-control" ng-model="registerData.username"/>
-                            <span id="username-validation"/ class="text-danger">                           
+							<input type="text" class="form-control" name="usrnm" ng-model="registerData.username" required ng-minlength="3" ng-maxlength="15"/>
+                            <p id="username-validation" class="text-danger" ng-show="registerData.usrnm.$error.required && (registerData.usrnm.$dirty || registerData.usrnm.$touched)">This field is required!</p>
+							<p id="username-validation" class="text-danger" ng-show="registerData.usrnm.$error.minlength && registerData.usrnm.$touched">Username must have at least 3 characters!</p> 	
+							<p id="username-validation" class="text-danger" ng-show="registerData.usrnm.$error.maxlength && registerData.usrnm.$touched">Username can not contain more then 9 characters!</p>                    
                         </div>
                     </div>
 					<div class="form-group">
 						<label class = "control-label col-md-3">Password</label>
                         <div class="col-md-9">
-							<input type="password" class="form-control" ng-model="registerData.password"/>
-                            <span id="password-validation"/ class="text-danger">                           
+							<input type="password" class="form-control" name="pass" ng-model="registerData.password" required ng-minlength="6" ng-maxlength="25"/>
+                            <p id="pass-validation" class="text-danger" ng-show="registerData.pass.$error.required && (registerData.pass.$dirty || registerData.pass.$touched)">This field is required!</p>
+							<p id="pass-validation" class="text-danger" ng-show="registerData.pass.$error.minlength && registerData.pass.$touched">Password must have at least 6 characters!</p> 	
+							<p id="username-validation" class="text-danger" ng-show="registerData.usrnm.$error.maxlength && registerData.usrnm.$touched">Username can not contain more then 25 characters!</p>   							
+                        </div>
+					</div>
+					<div class="form-group">
+						<label class = "control-label col-md-3">Confirm password</label>
+                        <div class="col-md-9">
+							<input type="password" class="form-control" name="confPass" ng-model="passwordVerify" required data-password-verify="registerData.password"/>
+                            <p id="confPass-validation" class="text-danger" ng-show="registerData.confPass.$error.required && (registerData.confPass.$dirty || registerData.confPass.$touched)">This field is required!</p>
+							<p  id="confPass-validation" class="text-danger" ng-show="registerData.confPass.$error.passwordVerify">Please, confirm password!</p>
                         </div>
 					</div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <button class="btn btn-acq" ng-click="auth.register()">Register</button>
+                            <button class="btn btn-acq" ng-click="auth.register()" ng-disabled="registerData.$invalid">Register</button>
                         </div>
                     </div>
                 </div>
             </div>
+		</form>
 			<span><a href="#/" style="color:rgb(16,162,104)"><i>Home</i></a></span>
     </div>
 </div>

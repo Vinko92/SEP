@@ -4,7 +4,10 @@
 <h1 style="display:inline">Who Are You?</h1> <h3 style="display:inline;color:grey">{{ctrl.message}}</h3>
 </div>
 <widget-feedback></widget-feedback>
-<form>
+	<p id="username-validation" name="validation" class="text-danger" ng-show="personal.firstName.$error.required && (personal.firstName.$dirty || personal.firstName.$touched)">Username field is required!	</p>
+	<p id="username-validation" name="validation" class="text-danger" ng-show="personal.firstName.$error.minlength && personal.firstName.$touched">Username must have at least 3 characters!</p> 	
+	<p id="username-validation" name="validation" class="text-danger" ng-show="personal.firstName.$error.maxlength && personal.firstName.$touched">Username can not contain more then 9 characters!</p> 
+<form name="personal">
 <div class="panel panel-default col-md-5" style="padding:0px;margin-top:20px;">
   <div class="panel-heading" >
     <h2 class="panel-title">Basic Info</h2>
@@ -13,8 +16,9 @@
   <div class="col-md-11">
  <div class="col-md-5" style="margin:10px;">
 	<label class="form-controll">First Name</label>
-    <input type="text" class="form-control" ng-model="customer.name" />
-	</div>
+    <input type="text" class="form-control" name="firstName" ng-model="customer.name" required ng-minlength="3" ng-maxlength="15"/>
+
+</div>
 	 <div class="col-md-5" style="margin:10px;">
 	<label class="form-controll">Last Name</label>
     <input type="text" class="form-control" ng-model="customer.surname" >

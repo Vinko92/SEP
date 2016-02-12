@@ -4,17 +4,46 @@
 	angular.module('merchant.customer')
 			.controller('CustomerController',CustomerController);
 			
-	CustomerController.$inject = ['$location','$scope','customer.service','serverUrl'];
-	function CustomerController($location,$scope,service,serverUrl){
+	CustomerController.$inject = ['$location','$scope','$rootScope','localStorageService','customer.service','serverUrl'];
+	function CustomerController($location,$scope,$rootScope,localStorageService,service,serverUrl){
+		
+		
 		var self = this;
 		$scope.successMessages = [];
-		$scope.errorMessages = [];
+		$rootScope.errorMessages = [];
 		self.message = "Help us get to know you!";
-
-
+		
+	
+		self.activeTab = function(activeTab)
+		{
+			$rootScope.activeTab = activeTab;
+		}
+			angular.element(document).ready(function(){
+				// if(localStorageService.get('username'))
+				// {
+					var url = $location.url();
+					var regex = /\/([A-z]*)-/i;
+					var matches = regex.exec(url);
+					if(matches){
+						var activeTab = matches[1];
+					
+						if(activeTab.length > 0){
+							$rootScope.activeTab = activeTab;
+						}
+					}
+					else{
+						$rootScope.activeTab = 'overview';
+					}
+				// }
+				// else
+				// {
+					// $location.path('/login');
+				// }
+				
+			});
+			
 		self.register = function(){
 			service.insertCustomer(serverUrl,$scope.customer).then(onSuccessfullRegistration,onErrorRegistration);
-//            console.log($scope.customer);
 		};
 
         var onSuccessfullRegistration = function(){

@@ -16,6 +16,7 @@
 		
 		
 		self.register = function(){
+			console.log($scope.registerData.name);
 			var response = service.register($scope.registerData);
 			response.then(function(){
 				console.log('Successfully registered');

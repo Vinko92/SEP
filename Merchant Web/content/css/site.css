@@ -1,9 +1,9 @@
 html, body {
-  height: 100%; }
+  min-height: 1000px; }
 
 .register-tab {
   float: left;
-  margin-left: 20px;
+  margin-left: 70px;
   margin-right: 20px;
   border-bottom: 2px solid #D8D8D8;
   color: #D8D8D8; }
@@ -22,7 +22,7 @@ html, body {
 
 .register-tab-active {
   float: left;
-  margin-left: 20px;
+  margin-left: 70px;
   margin-right: 20px;
   border-bottom: 2px solid #10a268;
   color: #10a268; }
@@ -78,6 +78,8 @@ html, body {
   width: 100%;
   bottom: 0;
   height: 200px;
+  clear: both;
+  position: relative;
   background-color: #1a1a1a;
   padding-left: 60px;
   margin: 0 auto; }

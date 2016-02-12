@@ -1,9 +1,9 @@
-<div class="row margin-bot">
+<div class="row margin-bot" style="content">
 	<ul class="register-nav">
-		<li id="personal" class="register-tab-active"><h4><a ng-click='ctrl.activeTab()' href="#/customer/personal-info">Personal</a></h4></li>
-		<li id="travel" class="register-tab-active"><h4><a ng-click="ctrl.activeTab()" href="#/customer/travel-insurance">Travel</a></h4></li>
-		<li id="home" class="register-tab-active"><h4><a ng-click="ctrl.activeTab()"  href="#/customer/home-insurance">Home</a></h4></li>
-		<li id="vehicle" class="register-tab-active"><h4><a ng-click="ctrl.activeTab()" href="#/customer/vehicle-insurance">Vehicle</a></h4></li>
-        <li id="overview" class="register-tab-active"><h4><a ng-click="ctrl.activeTab()" href="#/customer/overview">Overview</a></h4></li>
+		<li id="personal" ng-class="{'register-tab': activeTab !== 'personal', 'register-tab-active': activeTab === 'personal'}"><h4><a ng-click='ctrl.activeTab("personal")' href="#/customer/personal-info">Personal</a></h4></li>
+		<li id="travel" ng-class="{'register-tab': activeTab !== 'travel', 'register-tab-active': activeTab === 'travel'}"><h4><a ng-click="ctrl.activeTab('travel')" href="#/customer/travel-insurance">Travel</a></h4></li>
+		<li id="home" ng-class="{'register-tab': activeTab !== 'home', 'register-tab-active': activeTab === 'home'}"><h4><a ng-click="ctrl.activeTab('home')"  href="#/customer/home-insurance">Home</a></h4></li>
+		<li id="vehicle" ng-class="{'register-tab': activeTab !== 'vehicle', 'register-tab-active': activeTab === 'vehicle'}"><h4><a ng-click="ctrl.activeTab('vehicle')" href="#/customer/vehicle-insurance">Vehicle</a></h4></li>
+        <li id="overview" ng-class="{'register-tab': activeTab !== 'overview', 'register-tab-active': activeTab === 'overview'}"><h4><a ng-click="ctrl.activeTab('overview')" href="#/customer/overview">Overview</a></h4></li>
 	</ul>
 </div>
